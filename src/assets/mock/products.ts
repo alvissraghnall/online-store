@@ -11,8 +11,17 @@ import airOmni from "../Air-Omni.jpeg";
 
 export const products = [
     {
+        id: 1001,
+        name: "Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport",
+        image: "https://flowbite.com/docs/images/products/apple-watch.png",
+        price: 599,
+        category: "gadgets",
+        bgColor: "",
+        description: "Lorem ipsum dolor sit amet, consectur manet ilit de la fried. Sa aldier na walters kur livre. Hapus Corpus!"
+    },
+    {
         id: 1,
-        name: 'Product 1',
+        name: 'Gaze Pad Mouse',
         image: gazePadMouse,
         price: 100,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
@@ -29,7 +38,7 @@ export const products = [
         bgColor: "#22cc13"
     }, {
         id: 3,
-        name: 'Product 3',
+        name: 'Finger Tip Microscope',
         image: fingertipMicroscope,
         price: 145,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',

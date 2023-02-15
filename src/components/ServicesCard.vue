@@ -1,6 +1,6 @@
 <template>
-    <div class="flex h-20 max-w-sm min-w-[14rem] p-2.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" :style="{background: bgColor}">
-        <div class="w-[30%] flex place-items-center">
+    <div class="flex h-20 mb-5 items-center gap-x-2 max-w-sm md:min-w-[18rem] p-2.5 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" :style="{background: bgColor}">
+        <div class="flex place-items-center">
             <div class="rounded-full flex place-items-center bg-slate-900">
                 <OhVueIcon 
                     :name="iconName" 
@@ -9,12 +9,12 @@
                 />
             </div>
         </div>
-        <div class="w-[70%]">
+        <div class="text-white">
 
-            <h5 class="font-mono text-sm font-normal tracking-tight text-gray-900 dark:text-white">
+            <h5 class="font-mono text-sm font-normal text-neutral-800 tracking-tight dark:text-white">
                 <slot name="header"></slot>
             </h5>
-            <p class="hidden sm:block font-normal text-gray-700 dark:text-gray-400">
+            <p class="hidden font-normal text-gray-700 dark:text-gray-400 text-xs sm:text-base">
                 <slot name="rest"></slot>
             </p>
         </div>

@@ -9,6 +9,18 @@ import pivoPod from "../Pivo-Pod-review-9.jpeg";
 import razorKishi from "../razor-kishi.jpeg";
 import airOmni from "../Air-Omni.jpeg";
 
+import phoneA from "../phone-01.jpg";
+import phoneF from "../phone-02.jpg";
+import phoneB from "../phone-03.png";
+import phoneC from "../phone-04.jpg";
+import phoneD from "../phone-05.jpg";
+import phoneE from "../phone-06.jpg";
+
+import wireless_1 from "../wireless-01.png";
+import wireless_2 from "../wireless-02.png";
+import wireless_3 from "../wireless-03.png";
+
+
 export const products = [
     {
         id: 1001,
@@ -16,7 +28,6 @@ export const products = [
         image: "https://flowbite.com/docs/images/products/apple-watch.png",
         price: 599,
         category: "gadgets",
-        bgColor: "",
         description: "Lorem ipsum dolor sit amet, consectur manet ilit de la fried. Sa aldier na walters kur livre. Hapus Corpus!"
     },
     {
@@ -26,8 +37,6 @@ export const products = [
         price: 100,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 1',
-        bgColor: "#384bef"
-
     }, {
         id: 2,
         name: 'Product 2',
@@ -35,7 +44,6 @@ export const products = [
         price: 100,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 1',
-        bgColor: "#22cc13"
     }, {
         id: 3,
         name: 'Finger Tip Microscope',
@@ -43,7 +51,6 @@ export const products = [
         price: 145,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 2',
-        bgColor: "#e43770"
     }, {
         id: 4,
         name: 'Product 4',
@@ -51,7 +58,7 @@ export const products = [
         price: 340,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 3',
-        bgColor: "#460fdf"
+    
     }, {
         id: 5,
         name: 'Product 5',
@@ -59,7 +66,7 @@ export const products = [
         price: 1920,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 2',
-        bgColor: "#cadd23"
+    
     }, {
         id: 6,
         name: 'Product 6',
@@ -67,7 +74,7 @@ export const products = [
         price: 7000,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 2',
-        bgColor: "#f84049"
+    
     }, {
         id: 7,
         name: 'Product 7',
@@ -75,7 +82,7 @@ export const products = [
         price: 740,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 2',
-        bgColor: "#3a11ce"
+    
     }, {
         id: 8,
         name: 'Product 8',
@@ -83,7 +90,7 @@ export const products = [
         price: 239,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 4',
-        bgColor: "#20e7d7"
+    
     }, {
         id: 9,
         name: 'Product 9',
@@ -91,7 +98,7 @@ export const products = [
         price: 53,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 3',
-        bgColor: "#07ac4b"
+    
     }, {
         id: 10,
         name: 'Product 10',
@@ -99,7 +106,7 @@ export const products = [
         price: 100,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 4',
-        bgColor: "#9861e0"
+    
     }, {
         id: 11,
         name: 'Product 11',
@@ -107,6 +114,87 @@ export const products = [
         price: 100,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 4',
-        bgColor: "#2c142e"
+    
     }, 
-]
+];
+
+export const phones = [
+    {
+        id: 12,
+        name: 'Phone A',
+        image: phoneA,
+        price: 295,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
+        category: 'phones',
+    },{
+        id: 13,
+        name: 'Phone B',
+        image: phoneB,
+        price: 850,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
+        category: 'phones',
+    },{
+        id: 14,
+        name: 'Phone C',
+        image: phoneC,
+        price: 351,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
+        category: 'phones',
+    }, {
+        id: 20,
+        name: 'Phone D',
+        image: phoneD,
+        price: 9023,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
+        category: 'phones',
+    },{
+        id: 15,
+        name: 'Phone E',
+        image: phoneE,
+        price: 89,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
+        category: 'phones',
+    },{
+        id: 16,
+        name: 'Phone F',
+        image: phoneF,
+        price: 4766,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
+        category: 'phones',
+    },
+];
+
+export const headset = [
+    {
+        id: 17,
+        name: 'Headset Ultra',
+        image: wireless_2,
+        price: 400,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
+        category: 'headset',
+    },{
+        id: 18,
+        name: 'Karma Sutra Headset',
+        image: wireless_1,
+        price: 48,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
+        category: 'headset',
+    },{
+        id: 19,
+        name: 'Wireless Headset',
+        image: wireless_3,
+        price: 610,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
+        category: 'headset',
+    }
+];
+
+let rnd = Math.random();
+
+export const newArrivals = products.filter((value, idx) => {
+    return idx === Math.floor(rnd * products.length);
+}).concat(phones.filter((val, idx) => {
+    return idx === Math.floor(rnd * phones.length);
+}), headset.filter((val, idx) => {
+    return idx === Math.floor(rnd * headset.length);
+}));

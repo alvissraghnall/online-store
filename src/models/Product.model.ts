@@ -5,6 +5,5 @@ export interface Product {
     price: number;
     description: string;
     category: string;
-    bgColor: string;
     rating?: number;
 }

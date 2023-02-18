@@ -1,5 +1,5 @@
 <template>
-<header class="flex h-12 bg-[#eee] px-2 sm:px-4 py-2.5 rounded border-gray-200 dark:bg-gray-900 dark:border-gray-700 items-center justify-around">
+<header :ref="headerRef" class="flex h-12 bg-[#eee] px-2 sm:px-4 py-2.5 rounded border-gray-200 dark:bg-gray-900 dark:border-gray-700 items-center justify-around">
     <div class="flex items-center space-x-7">
         <router-link to="/">
             <span class="text-[#646cff]">
@@ -69,12 +69,25 @@
 </template>
 
 <style scoped>
+.sticky-head {
+  @apply w-full sticky top-0 left-0 leading-8 z-50 shadow-md shadow-[#ddd];
+}
 </style>
 
 <script setup lang="ts">
 import {OhVueIcon, addIcons} from "oh-vue-icons";
 import { IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp } from "oh-vue-icons/icons";
+import { ref, VNodeRef } from "vue";
 
 addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp)
 
+let headerRef = ref<VNodeRef>();
+
+const stickyHeader = () => {
+  window.addEventListener("scroll", () => {
+    if(document.body.scrollTo > 80 || document.documentElement.scrollTo > 80) {
+      headerRef.value
+    }
+  });
+}
 </script>

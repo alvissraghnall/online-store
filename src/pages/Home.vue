@@ -6,7 +6,7 @@
                 Trending product in {{ monthYear }}
             </p>
             <h2 class="font-semibold mx-4 text-xl lg:text-4xl capitalize font-serif text-slate-900">
-                Stylize and beautify your mobile devices whilst improve your productivity
+                Stylize and beautify your mobile devices whilst improving your productivity
             </h2>
 
             <p class="mx-4 my-5 text-sm text-slate-600 font-serif font-extralight">
@@ -81,43 +81,15 @@
     </section>
 
     <section>
-        <div class="flex gap-2 w-full text-white p-12 bg-sky-900 text-left">
-            <div class="">
+        <div class="flex max-h-80 gap-2 w-full text-white p-12 bg-sky-900 text-left">
+            <div class="w-1/2">
 
                 <h6 class="capitalize text-sm font-mono font-light my-3"> limited offers </h6>
                 <div class="mb-4 capitalize text-xl text-left font-semibold font-mono">
                     <p> quality armchair </p>
                 </div>
                 
-                <div class="grid grid-flow-col gap-5 text-center auto-cols-max">
-                    <div class="flex flex-col">
-                        <span class="countdown font-mono text-5xl">
-                            <span>{{ days }}</span>
-                        </span>
-                        days
-                    </div> 
-                    <span class="text-5xl pt-1">:</span>
-                    <div class="flex flex-col">
-                        <span class="countdown font-mono text-5xl">
-                            <span>{{ hours }}</span>
-                        </span>
-                        hours
-                    </div> 
-                    <span class="text-5xl pt-1">:</span>
-                    <div class="flex flex-col">
-                        <span class="countdown font-mono text-5xl">
-                            <span>{{minutes}}</span>
-                        </span>
-                        min
-                    </div> 
-                    <span class="text-5xl pt-1">:</span>
-                    <div class="flex flex-col">
-                        <span class="countdown font-mono text-5xl">
-                            <span>{{seconds}}</span>
-                        </span>
-                        sec
-                    </div>
-                </div>
+                <Countdown />
             
                 <button class="my-3 capitalize relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-sky-800 rounded-lg group bg-gradient-to-tr from-sky-900 to-blue-600 group-hover:from-sky-800 group-hover:to-blue-700 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
                     <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
@@ -126,8 +98,35 @@
                 </button>
             </div>
 
-            <div class="flex transform -scale-x-100 rotate-[50deg] justify-center items-center pb-3">
-                <img src="../assets/hero-image-ii.png" alt="" class="object-contain">
+            <div class="flex justify-center items-center pb-3">
+                <!--<img src="../assets/hero-image-ii.png" alt="" class="object-contain overflow-clip transform -scale-x-100 rotate-[50deg] h-full"> -->
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="m-8 w-full">
+            <h2 class="mx-auto text-slate-800 font-semibold text-lg font-mono capitalize text-center p-8 sm:text-xl md:text-2xl lg:text-3xl">
+                new arrivals
+            </h2>
+            <div class="flex flex-wrap justify-evenly">
+                <div v-for="product in newArrivals">
+                    <ProductItemCard :product="product" />
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="m-8 w-full">
+            <h2 class="mx-auto text-slate-800 font-semibold text-lg font-mono capitalize text-center p-8 sm:text-xl md:text-2xl lg:text-3xl"> 
+                popular in category
+            </h2>
+            <div class="flex flex-wrap justify-evenly">
+                <div v-for="product in phones">
+                    <ProductItemCard :product="product" />
+                </div> 
             </div>
         </div>
     </section>
@@ -135,9 +134,13 @@
 </template>
 
 
-<style scoped>
+<style>
 .sad {
     background: #ab9ae6;
+}
+
+body {
+    overflow-x: auto;
 }
 </style>
 
@@ -146,10 +149,9 @@ import { addIcons } from "oh-vue-icons";
 import { FaShippingFast, FcCustomerSupport, MdHighquality } from "oh-vue-icons/icons";
 import { GiCycle } from "oh-vue-icons/icons/gi";
 import { RiSecurePaymentLine, RiTruckLine } from "oh-vue-icons/icons/ri";
-import { ServicesCard, ProductCard } from "../components";
-import { products } from "../assets/mock/products";
+import { ServicesCard, ProductCard, ProductItemCard, Countdown } from "../components";
+import { products, newArrivals, phones } from "../assets/mock/products";
 import { services } from "../assets/mock/services";
-import { onMounted } from "vue";
 let date = new Date();
 
 let monthYear = date.toLocaleString("en-us", { month: "long", year: "numeric" });
@@ -157,38 +159,5 @@ let serviceIcons = [FcCustomerSupport, FaShippingFast, RiTruckLine, RiSecurePaym
 
 addIcons(...serviceIcons);
 
-let days: number, hours: number, minutes: number, seconds: number, interval: any;
-
-const setCountdownVars = ({
-    d, h, m, s
-}: {[x: string]: number}) => {
-    days = d; hours = h;
-    minutes = m; seconds = s;
-}
-
-const countDown = () => {
-    const destDate = new Date(2023, 1, 23, 1).getTime();    
-
-    interval = setInterval(() => {
-        const now = Date.now();
-        const difference = destDate - now;
-
-        const ays = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const ours = Math.floor(difference % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
-        const inutes = Math.floor(difference % (1000 * 60 * 60) / (1000 * 60));
-        const econds = Math.floor(difference % (1000 * 60) / (1000));
-
-        if (destDate < 0) clearInterval(interval.current);
-        else {
-            setCountdownVars({
-                ays, ours, inutes, econds
-            });
-        }
-    })
-};
-
-onMounted(() => {
-    countDown();
-})
 //brainshop AI
 </script>

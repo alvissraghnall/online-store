@@ -1,5 +1,5 @@
 <template>
-<header :ref="headerRef" class="flex h-12 bg-[#eee] px-2 sm:px-4 py-2.5 rounded border-gray-200 dark:bg-gray-900 dark:border-gray-700 items-center justify-around">
+<header ref="headerRef" class="flex h-12 bg-[#eee] px-2 sm:px-4 py-2.5 rounded border-gray-200 dark:bg-gray-900 dark:border-gray-700 items-center justify-around">
     <div class="flex items-center space-x-7">
         <router-link to="/">
             <span class="text-[#646cff]">
@@ -70,24 +70,36 @@
 
 <style scoped>
 .sticky-head {
-  @apply w-full sticky top-0 left-0 leading-8 z-50 shadow-md shadow-[#ddd];
+  @apply w-full sticky top-0 left-0 leading-8 z-50 shadow-md shadow-[#ddd] bg-[#fff];
 }
 </style>
 
 <script setup lang="ts">
 import {OhVueIcon, addIcons} from "oh-vue-icons";
 import { IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp } from "oh-vue-icons/icons";
-import { ref, VNodeRef } from "vue";
+import { ref, VNodeRef, onMounted, onUnmounted } from "vue";
 
 addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp)
 
-let headerRef = ref<VNodeRef>();
+let headerRef = ref<HTMLElement | null>(null);
 
 const stickyHeader = () => {
   window.addEventListener("scroll", () => {
-    if(document.body.scrollTo > 80 || document.documentElement.scrollTo > 80) {
-      headerRef.value
+    if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+      headerRef.value?.classList.add("sticky-head");
+    } else {
+      headerRef.value?.classList.remove("sticky-head");
     }
   });
+  console.log(headerRef, headerRef.value);
 }
+
+onMounted(() => {
+  stickyHeader();
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", stickyHeader);
+});
+
 </script>

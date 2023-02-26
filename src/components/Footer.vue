@@ -64,7 +64,7 @@
                         </a>
                     </li>
                     <li class="mb-3">
-                        <a class="text-white space-x-1 hover:text-[#eee]">
+                        <a href="tel:+17443902" class="text-white space-x-1 hover:text-[#eee]">
                             <span class="cursor-pointer text-[#eee] font-mono font-light">
                                 <OhVueIcon
                                     name="fa-phone"

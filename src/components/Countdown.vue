@@ -34,15 +34,23 @@
 import { onMounted, reactive, ref } from "vue";
 
 let days = ref<number>(0), hours = ref<number>(0), minutes = ref<number>(0), seconds = ref<number>(0), interval: number;
+const props = defineProps<{
+    countDownDate: {
+        year: number;
+        month: number;
+        day: number;
+    }
+}>();
 // const setCountdownVars = ({
 //     d, h, m, s
 // }: {[x: string]: number}) => {
 //     days = d; hours = h;
 //     minutes = m; seconds = s;
 // }
+const { year, month, day } = props.countDownDate;
 
 const countDown = () => {
-    const destDate = new Date(2023, 1, 23, 1).getTime();    
+    const destDate = new Date(year, month, day, 1).getTime();    
     let ays: number, ours: number, inutes: number, econds: number;
 
     let interval = setInterval(() => {

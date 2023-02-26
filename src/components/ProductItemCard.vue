@@ -7,7 +7,7 @@
                 <div class="overflow-x-hidden rounded-2xl relative">
                     <!-- <img class="h-40 rounded-2xl w-full object-cover"
                         src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg"> -->
-                    <img class="h-40 rounded-2xl w-full object-cover hover:scale-[.8] transition-[scale] ease-in-out duration-300" :src="product.image">
+                    <img class="h-40 rounded-2xl w-full object-cover hover:object-contain hover:scale-[.9] transition-all ease-in-out duration-300" :src="product.image">
                     <p class="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:opacity-50 opacity-70"
                             fill="none" viewBox="0 0 24 24" stroke="black">

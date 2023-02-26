@@ -80,7 +80,7 @@
         </swiper-container>
     </section>
 
-    <section>
+    <section :class="state.countdownPassed ? 'hidden' : ''">
         <div class="flex max-h-80 gap-2 w-full text-white p-12 bg-sky-900 text-left">
             <div class="w-1/2">
 
@@ -89,7 +89,7 @@
                     <p> quality armchair </p>
                 </div>
                 
-                <Countdown />
+                <Countdown :countDownDate="countDownDate" />
             
                 <button class="my-3 capitalize relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-sky-800 rounded-lg group bg-gradient-to-tr from-sky-900 to-blue-600 group-hover:from-sky-800 group-hover:to-blue-700 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
                     <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
@@ -152,12 +152,27 @@ import { RiSecurePaymentLine, RiTruckLine } from "oh-vue-icons/icons/ri";
 import { ServicesCard, ProductCard, ProductItemCard, Countdown } from "../components";
 import { products, newArrivals, phones } from "../assets/mock/products";
 import { services } from "../assets/mock/services";
+import { reactive, onMounted } from "vue";
 let date = new Date();
 
 let monthYear = date.toLocaleString("en-us", { month: "long", year: "numeric" });
 let serviceIcons = [FcCustomerSupport, FaShippingFast, RiTruckLine, RiSecurePaymentLine, GiCycle, MdHighquality];
 
 addIcons(...serviceIcons);
+
+const countDownDate = {
+    year: 2023,
+    month: 2,
+    day: 3
+}
+
+const state = reactive({
+    countdownPassed: false
+});
+
+onMounted(() => {
+    state.countdownPassed = Date.now() > new Date(countDownDate.year, countDownDate.month, countDownDate.day).getTime();
+});
 
 //brainshop AI
 </script>

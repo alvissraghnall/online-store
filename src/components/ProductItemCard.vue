@@ -1,6 +1,6 @@
 <template>
     <!-- UI card from https://uxplanet.org/ultimate-guide-for-designing-ui-cards-59488a91b44f -->
-    <div class=" bg-gray-100 flex flex-col justify-center">
+    <div class=" flex flex-col justify-center">
         <div class="relative m-3 flex flex-wrap mx-auto justify-center">
 
             <div class="relative max-w-sm min-w-[340px] bg-white shadow-md rounded-3xl p-2 mx-1 my-3 cursor-pointer">
@@ -8,7 +8,7 @@
                     <!-- <img class="h-40 rounded-2xl w-full object-cover"
                         src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg"> -->
                     <img class="h-40 rounded-2xl w-full object-cover hover:object-contain hover:scale-[.9] transition-all ease-in-out duration-300" :src="product.image">
-                    <p class="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group">
+                    <p class="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group" @click="addToCart">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:opacity-50 opacity-70"
                             fill="none" viewBox="0 0 24 24" stroke="black">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -61,13 +61,46 @@
         </div>
     </div>
 
+    <Toast
+        msg="Product added to cart!"
+        :success="true"
+        :show="showToast"
+        @close-toast="closeToast"
+    />
+
 </template>
 
 
 <script setup lang="ts">
+import { ref, reactive } from 'vue';
+import { useStore } from 'vuex';
 import { Product } from '../models/Product.model';
+import Toast from './Toast.vue';
+
+let showToast = ref(false);
+const xtive = reactive({
+    showToast
+})
 
 const props = defineProps<{
     product: Product
 }>();
+const store = useStore();
+let timeout: number;
+// store.dispatch()
+const addToCart = () => {
+    store.commit('ADD_CART_ITEM', props.product);
+    // alert("Product added to cart!")
+    console.log(store.getters.totalQuantity, store.getters.totalAmount);
+    
+    xtive.showToast = true;
+    timeout = setTimeout(() => {
+        xtive.showToast = false;
+    }, 7000)
+}
+
+const closeToast = () => {
+    xtive.showToast = false; 
+    clearTimeout(timeout);
+}
 </script>

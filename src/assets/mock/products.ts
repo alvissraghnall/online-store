@@ -198,3 +198,5 @@ export const newArrivals = products.filter((value, idx) => {
 }), headset.filter((val, idx) => {
     return idx === Math.floor(rnd * headset.length);
 }));
+
+export const allProducts = products.concat(phones, headset);

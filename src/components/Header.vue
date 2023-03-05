@@ -55,7 +55,7 @@
             />
             <span class="absolute top-0 right-0 w-4 h-4 z-10 font-semibold flex items-center justify-center rounded-full text-xs bg-[#646cff] text-[#eee] mr-2.5 md:mr-0">
               <!-- badge -->
-              3
+              {{ totalQuantity }}
             </span>
         </span>
         <span class="h-full w-full">
@@ -77,9 +77,18 @@
 <script setup lang="ts">
 import {OhVueIcon, addIcons} from "oh-vue-icons";
 import { IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp } from "oh-vue-icons/icons";
-import { ref, VNodeRef, onMounted, onUnmounted } from "vue";
+import { ref, VNodeRef, onMounted, onUnmounted, reactive, computed } from "vue";
+import { mapState, useStore } from "vuex";
 
-addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp)
+addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp);
+
+const totalQuantity = computed(() => useStore().getters.totalQuantity);
+// ref(useStore().getters.totalQuantity);
+// const re = reactive({
+//   totalQuantity
+// })
+
+// const tQ = $store.getters.totalQuantity;
 
 let headerRef = ref<HTMLElement | null>(null);
 
@@ -93,6 +102,7 @@ const stickyHeader = () => {
   });
   console.log(headerRef, headerRef.value);
 }
+// console.log();
 
 onMounted(() => {
   stickyHeader();

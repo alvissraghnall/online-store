@@ -17,10 +17,10 @@
                     </p>
                 </div>
                 <div class="mt-4 pl-2 mb-2 flex justify-between ">
-                    <div>
+                    <router-link :to="'/products/' + product.id">
                         <p class="text-lg font-semibold text-gray-900 mb-0">{{product.name}}</p>
                         <p class="text-lg text-gray-900 mt-0 font-mono font-medium">${{product.price}}</p>
-                    </div>
+                    </router-link>
                     <div class="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:opacity-70" fill="none"
                             viewBox="0 0 24 24" stroke="gray">
@@ -69,6 +69,17 @@
     />
 
 </template>
+
+<style scoped>
+@keyframes toast-expiring {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+}
+</style>
 
 
 <script setup lang="ts">

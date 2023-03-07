@@ -1,7 +1,7 @@
 <template>
-    <section class="bg-cover bg-gradient-to-r bg-no-repeat bg-center from-neutral-400 to-neutral-900 via-stone-800 flex items-center justify-center py-24 px-0">
+    <section class="bg-cover bg-gradient-to-r bg-no-repeat bg-center from-[#646cff] to-[#525afc] flex items-center justify-center py-16 md:py-24 px-0">
         <div class="flex mx-auto text-center">
-            <h1 class="text-neutral-200/90 text-center font-semibold">Products</h1>
+            <h1 class="text-neutral-200/90 text-center font-semibold text-base md:text-lg">Products</h1>
         </div>
     </section>
 
@@ -9,13 +9,13 @@
         <div class="flex mx-auto">
             <div class="flex flex-row w-full mx-4">
                 <div class="filter-widget w-1/4">
-                    <select class="py-2 px-5 border-solid border border-cyan-900 cursor-pointer rounded-md bg-cyan-800 text-white/80 focus:outline-none">
+                    <select class="py-2 px-5 border-solid border border-cyan-900 cursor-pointer rounded-md bg-cyan-800 text-white/80 focus:outline-none" @change="handleFilter">
                         <option class="cursor-pointer text-base capitalize" selected disabled>filter by category</option>
-                        <option class="cursor-pointer text-base" value="headsets"> Headsets </option>
-                        <option class="cursor-pointer text-base" value="chargers"> Chargers </option>
-                        <option class="cursor-pointer text-base" value="earphones"> Earphones </option>
-                        <option class="cursor-pointer text-base" value="power-banks"> Power Banks </option>
-                        <option class="cursor-pointer text-base" value="selfie-sticks"> Selfie sticks </option>
+                        <option class="cursor-pointer text-base" value="HEADSETS"> Headsets </option>
+                        <option class="cursor-pointer text-base" value="CHARGERS"> Chargers </option>
+                        <option class="cursor-pointer text-base" value="EARPHONES"> Earphones </option>
+                        <option class="cursor-pointer text-base" value="POWER_BANKS"> Power Banks </option>
+                        <option class="cursor-pointer text-base" value="SELFIE_STICKS"> Selfie sticks </option>
                     </select>
                 </div>
                 <div class="w-1/4 filter-widget">
@@ -27,7 +27,12 @@
                 </div>
                 <div class="w-1/2">
                     <div class="w-full pr-3 pl-0.5 border rounded-md border-solid border-cyan-800 flex items-center justify-between">
-                        <input type="text" placeholder="Search..." class="w-full border-none outline-none py-2 px-2.5 ">
+                        <input 
+                            type="text" 
+                            placeholder="Search..." 
+                            class="w-full border-none outline-none py-2 px-2.5 "
+                            @input="handleSearch"
+                        >
                         <span class="text-sky-800">
                             <OhVueIcon
                                 name="ri-search-line"
@@ -36,6 +41,18 @@
                         </span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="flex">
+            <div class="flex flex-wrap justify-evenly mx-auto">
+                <h2 v-if="productsData.length === 0" class="py-12 text-center font-mono font-bold text-lg"> No products found! </h2>
+                <div v-else v-for="product in productsData">
+                    <ProductItemCard :product="product" />
+                </div> 
+                
             </div>
         </div>
     </section>
@@ -50,12 +67,44 @@
 import {OhVueIcon, addIcons} from "oh-vue-icons";
 import { RiSearchLine } from "oh-vue-icons/icons";
 import { allProducts } from "../assets/mock/products";
+import { ref,  } from "vue";
+import { ProductItemCard } from "../components";
 
 const products = allProducts;
+const productsData = ref(products);
 addIcons(
     RiSearchLine
 );
 const props = defineProps<{
     // title: string
 }>();
+
+const handleFilter = (ev: Event) => {
+    const filterValue = (ev.target as HTMLSelectElement).value;
+    if (filterValue === 'HEADSETS') {
+        const filteredProducts = products.filter(item => item.category === 'HEADSETS');
+        productsData.value = filteredProducts;
+    } else if (filterValue === 'POWER_BANKS') {
+        productsData.value = products.filter(item => item.category === 'POWER_BANKS');
+    } else if (filterValue === 'EARPHONES') {
+        productsData.value = products.filter(item => item.category === 'EARPHONES');
+    } else if (filterValue === 'SELFIE_STICKS') {
+        productsData.value = products.filter(item => item.category === 'SELFIE_STICKS');
+    } else if (filterValue === 'CHARGERS') {
+        productsData.value = products.filter(item => item.category === 'CHARGERS');
+    }
+    console.log(productsData.value);
+    console.log(filterValue);
+    
+}
+
+const handleSearch = (ev: Event) => {
+    const search = (<HTMLInputElement>ev.target).value;
+    
+    const searchedProducts = products.filter(item =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+    );
+    productsData.value = searchedProducts;
+}
+
 </script>

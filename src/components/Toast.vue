@@ -1,7 +1,7 @@
 <template>
     <div
-        class="flex items-center fixed top-14 z-50 right-4 w-full max-w-xs p-4 mb-4 text-gray-200 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 duration-200 transition-all ease-in-out"
-        :class="success ? 'bg-green-600' : 'bg-red-600'"
+        class="flex items-center fixed z-50 right-4 w-full max-w-xs p-4 mb-4 text-gray-200 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 duration-200 transition-all ease-in-out"
+        :class="[success ? 'bg-green-600' : 'bg-red-600', show ? 'top-14' : '-top-20 absolute']"
         role="alert"
         v-if="show"
     >

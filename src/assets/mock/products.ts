@@ -125,42 +125,42 @@ export const phones = [
         image: phoneA,
         price: 295,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
-        category: 'phones',
+        category: 'POWER_BANKS',
     },{
         id: 13,
         name: 'Phone B',
         image: phoneB,
         price: 850,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
-        category: 'phones',
+        category: 'POWER_BANKS',
     },{
         id: 14,
         name: 'Phone C',
         image: phoneC,
         price: 351,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
-        category: 'phones',
+        category: 'POWER_BANKS',
     }, {
         id: 20,
         name: 'Phone D',
         image: phoneD,
         price: 9023,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
-        category: 'phones',
+        category: 'POWER_BANKS',
     },{
         id: 15,
         name: 'Phone E',
         image: phoneE,
         price: 89,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
-        category: 'phones',
+        category: 'POWER_BANKS',
     },{
         id: 16,
         name: 'Phone F',
         image: phoneF,
         price: 4766,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
-        category: 'phones',
+        category: 'POWER_BANKS',
     },
 ];
 
@@ -171,21 +171,21 @@ export const headset = [
         image: wireless_2,
         price: 400,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
-        category: 'headset',
+        category: 'HEADSETS',
     },{
         id: 18,
         name: 'Karma Sutra Headset',
         image: wireless_1,
         price: 48,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
-        category: 'headset',
+        category: 'HEADSETS',
     },{
         id: 19,
         name: 'Wireless Headset',
         image: wireless_3,
         price: 610,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
-        category: 'headset',
+        category: 'HEADSETS',
     }
 ];
 

@@ -72,7 +72,7 @@
                             </h4>
                             <form @submit="handleSubmit">
                                 <div class="mb-7 flex items-center gap-4">
-                                    <span v-for="i in 5" class="flex items-center color[#525afc] font-semibold gap-x-1.5 cursor-pointer" @click="() => ratingInput = i">{{i}}
+                                    <span v-for="i in 5" class="flex items-center color[#525afc] font-semibold gap-x-1.5 cursor-pointer active:scale-125 duration-200 ease-in-out" @click="() => ratingInput = i">{{i}}
                                         <OhVueIcon
                                             :name="ratingInput >= i ? 'bi-star-fill' : 'bi-star'"
                                             fill="#525afc"
@@ -84,6 +84,7 @@
                                         type="text" 
                                         :rows="4" 
                                         placeholder="Enter review..." 
+                                        required
                                         class="w-full border border-solid border-[#525afc] rounded-md py-2 px-5 focus:outline-none"
                                         :value="reviewMsg"
                                         @input="(ev) => reviewMsg = (ev.target as HTMLTextAreaElement).value"

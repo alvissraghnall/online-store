@@ -8,7 +8,7 @@
             <div class="w-1/2">
                 <img :src="image" alt="">
             </div>
-            <div class="w-1/2 mt-24">
+            <div class="w-1/2 mt-24 pl-4 ml-2">
                 <h2 class="text-3xl mb-2.5">{{ name }}</h2>
                 <div class="flex items-center gap-5 mb-4">
                     <div class="gap-1 flex">
@@ -35,7 +35,7 @@
         </div>
     </section>
 
-    <section class="mx-16">
+    <section class="mx-16 mt-8">
         <div class="flex flex-row w-full mx-auto">
 
             <div class="">
@@ -139,6 +139,7 @@ import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { allProducts } from "../assets/mock/products";
 import { ProductItemCard, Toast } from "../components";
+import { toast, type ToastOptions } from 'vue3-toastify';
 
 let rating = 4;
 let reviews = [{
@@ -173,7 +174,14 @@ console.log(category, relatedProducts);
 
 const handleSubmit = (ev: Event) => {
     ev.preventDefault();
-    console.log(ratingInput, reviewMsg);
+    const obj = {
+        rating: ratingInput,
+        review: reviewMsg
+    }
+    console.log(obj);
+    toast.success("Review Submitted!", {
+        autoClose: 5700,
+    } as ToastOptions)
 }
 
 let showToast = ref(false);
@@ -184,10 +192,14 @@ let timeout: number;
 const addToCart = () => {
     store.commit('ADD_CART_ITEM', product);
 
-    showToast.value = true;
-    timeout = setTimeout(() => {
-        showToast.value = false;
-    }, 7000)
+    // showToast.value = true;
+    // timeout = setTimeout(() => {
+    //     showToast.value = false;
+    // }, 7000)
+    toast.success("Item added to cart!", {
+        autoClose: 5700, 
+        // position: toast.POSITION.TOP_RIGHT,
+    } as ToastOptions)
 }
 
 const closeToast = () => {

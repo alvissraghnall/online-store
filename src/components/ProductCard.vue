@@ -6,7 +6,7 @@
         </router-link>
         <div class="px-5 pb-5">
             <router-link :to="'/products/' + product.id">
-                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ product.name }}</h5>
+                <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ product.name.length < 28 ? product.name : product.name.slice(0, 28).concat("...") }}</h5>
             </router-link>
             <div class="flex items-center mt-2.5 mb-5">
 

@@ -86,16 +86,18 @@
 
                 <h6 class="capitalize text-sm font-mono font-light my-3"> limited offers </h6>
                 <div class="mb-4 capitalize text-xl text-left font-semibold font-mono">
-                    <p> quality armchair </p>
+                    <p> quality headphones </p>
                 </div>
                 
                 <Countdown :countDownDate="countDownDate" />
             
-                <button class="my-3 capitalize relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-sky-800 rounded-lg group bg-gradient-to-tr from-sky-900 to-blue-600 group-hover:from-sky-800 group-hover:to-blue-700 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-                    <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                        visit store
-                    </span>
-                </button>
+                <router-link to="/products">
+                    <button class="my-3 capitalize relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-sky-800 rounded-lg group bg-gradient-to-tr from-sky-900 to-blue-600 group-hover:from-sky-800 group-hover:to-blue-700 hover:text-white dark:text-white focus:outline-none dark:focus:ring-cyan-800">
+                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                            visit store
+                        </span>
+                    </button>
+                </router-link>
             </div>
 
             <div class="flex justify-center items-center pb-3">
@@ -162,8 +164,8 @@ addIcons(...serviceIcons);
 
 const countDownDate = {
     year: 2023,
-    month: 2,
-    day: 3
+    month: 5,
+    day: 11
 }
 
 const state = reactive({

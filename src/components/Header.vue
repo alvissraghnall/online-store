@@ -48,7 +48,7 @@
               4
             </span>
         </span>
-        <span class="relative cursor-pointer h-full w-full">
+        <span class="relative cursor-pointer h-full w-full" @click="isCartOpen = true">
             <OhVueIcon 
                 name="la-shopping-cart-solid" 
                 fill="#646cff" 
@@ -66,6 +66,8 @@
         </span>
     </div>
 </header>
+
+<CartOverlay :open="isCartOpen" @close="isCartOpen = false" />
 </template>
 
 <style scoped>
@@ -79,6 +81,9 @@ import {OhVueIcon, addIcons} from "oh-vue-icons";
 import { IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp } from "oh-vue-icons/icons";
 import { ref, VNodeRef, onMounted, onUnmounted, reactive, computed } from "vue";
 import { mapState, useStore } from "vuex";
+import CartOverlay from "./CartOverlay.vue";
+
+let isCartOpen = ref(false);
 
 addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp);
 

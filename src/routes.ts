@@ -5,7 +5,8 @@ import {
     Cart,
     Checkout,
     Signin,
-    Signup
+    Signup,
+    NotFound
 } from "./pages";
 import { RouteRecordRaw } from "vue-router";
 
@@ -48,5 +49,9 @@ export const routes: RouteRecordRaw[] = [
         meta: {
             transition: "slide-down"
         }
+    },
+    {
+        path: "/:pathMatch(.*)*",
+        component: NotFound
     }
 ]

@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { addIcons, OhVueIcon } from 'oh-vue-icons';
-import { IconType } from 'oh-vue-icons/types/icons';
+// import { IconType } from 'oh-vue-icons/types/icons';
 import { FaShippingFast, FcCustomerSupport, MdHighquality } from "oh-vue-icons/icons";
 import { GiCycle } from "oh-vue-icons/icons/gi";
 import { RiSecurePaymentLine, RiTruckLine } from "oh-vue-icons/icons/ri";

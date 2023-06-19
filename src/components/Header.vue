@@ -82,9 +82,11 @@ import { IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp } from "
 import { ref, VNodeRef, onMounted, onUnmounted, reactive, computed } from "vue";
 import { mapState, useStore } from "vuex";
 import CartOverlay from "./CartOverlay.vue";
+import { ignoreBaseComps } from "../util/hide-base-helper";
+// import { useRouter } from "vue-router";
+
 
 let isCartOpen = ref(false);
-
 addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp);
 
 const totalQuantity = computed(() => useStore().getters.totalQuantity);

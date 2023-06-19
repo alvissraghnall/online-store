@@ -38,6 +38,7 @@ export const routes: RouteRecordRaw[] = [
     }, 
     {
         path: "/signin",
+        name: "signin",
         component: Signin,
         meta: {
             transition: "slide-up"
@@ -45,6 +46,7 @@ export const routes: RouteRecordRaw[] = [
     }, 
     {
         path: "/signup",
+        name: "signup",
         component: Signup,
         meta: {
             transition: "slide-down"

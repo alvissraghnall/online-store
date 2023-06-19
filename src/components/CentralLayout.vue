@@ -1,7 +1,7 @@
 <template>
-    <Header />
+    <Header v-if="!ignoreBaseComps.includes($route.path.slice(1))" />
     <router-view></router-view>
-    <Footer />
+    <Footer v-if="!ignoreBaseComps.includes($route.path.slice(1))" />
 </template>
 
 
@@ -12,4 +12,9 @@
 <script setup lang="ts">
 import Header from './Header.vue';
 import Footer from './Footer.vue';
+
+const ignoreBaseComps = [
+    'signup',
+    'signin',
+]
 </script>

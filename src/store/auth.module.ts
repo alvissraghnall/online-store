@@ -29,7 +29,7 @@ const initialState = user
         loginError: "" 
     }, user: null };
 
-export const auth: Module<any, any> = {
+export const auth: Module<AuthState, any> = {
     namespaced: true,
     state: initialState,
     actions: {
@@ -39,13 +39,16 @@ export const auth: Module<any, any> = {
             ).then(
                 response => {
                     console.log(response);
-                    commit('loginSuccess', response.token);
+                    commit('loginSuccess', user.email);
                     toast.success("Login successful!", {
                         autoClose: 4300,
                         hideProgressBar: false,
                         pauseOnHover: false,
                     } as ToastOptions);
                     router.push("/profile");
+                    localStorage.setItem("user", user.email);
+                    localStorage.setItem("JWT_TOKEN", response.token ?? '');
+                    
                     return Promise.resolve(user);
                 }
             ).catch (
@@ -60,32 +63,33 @@ export const auth: Module<any, any> = {
                     return Promise.reject(error);
                 }
             );
-            
-            // .then(
-            //     user => {
-            //         commit('loginSuccess', user);
-            //         return Promise.resolve(user);
-            //     },
-            //     error => {
-            //         commit('loginFailure');
-            //         return Promise.reject(error);
-            //     }
-            // );
         },
         logout({ commit }) {
             AuthService.logout();
             commit('logout');
 
-            router.push("/login");
+            router.push({ name: 'login' });
         },
-        register({ commit }, user: NewUser) {
-            return AuthService.register(user).then(
+        async register({ commit }, user: NewUser) {
+            return AuthControllerService.authControllerCreate(user).then(
                 response => {
                     commit('registerSuccess');
-                    return Promise.resolve(response.data);
+                    toast.success("Registration successful!", {
+                        autoClose: 4300,
+                        hideProgressBar: false,
+                        pauseOnHover: false,
+                    } as ToastOptions);
+                    router.push({ name: 'login' });
+                    
+                    return Promise.resolve(user);
                 },
                 error => {
                     commit('registerFailure');
+                    toast.error(error.body?.error?.message, {
+                        autoClose: 7700,
+                        hideProgressBar: false,
+                        pauseOnHover: true,
+                    } as ToastOptions);
                     return Promise.reject(error);
                 }
             );
@@ -95,7 +99,7 @@ export const auth: Module<any, any> = {
         loginSuccess(state: AuthState, user: NewUser) {
             state.status.loggedIn = true;
             state.status.loginError = null;
-            state.user = user.email ?? "";
+            state.user = user.email;
         },
         loginFailure(state: AuthState, payload: string) {
             state.status.loggedIn = false;

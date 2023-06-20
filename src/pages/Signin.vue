@@ -35,7 +35,7 @@
         
       </div>
   
-      <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div v-motion-pop class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <Form :validation-schema="schema" @submit="handleSubmit" class="space-y-6" >
           <div>
             <label for="email" class="block text-sm font-medium leading-6 text-gray-200">Email address</label>

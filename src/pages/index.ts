@@ -6,6 +6,7 @@ import Products from "./Products.vue";
 import Signin from "./Signin.vue";
 import Signup from "./Signup.vue";
 import NotFound from "./NotFound.vue";
+import Profile from "./Profile.vue";
 
 export {
     Cart,
@@ -15,5 +16,6 @@ export {
     Products,
     Signin,
     Signup,
-    NotFound
+    NotFound,
+    Profile
 }

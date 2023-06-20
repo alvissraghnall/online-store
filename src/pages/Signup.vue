@@ -7,7 +7,7 @@
         }">
             <div class="my-auto w-full grid md:grid-cols-2 grid-cols-1 sm:p-16">
                 <div class="flex text-white p-auto mb-12 px-8 text-center">
-                    <div class="m-auto">
+                    <div v-motion-pop-visible-once class="m-auto">
                         <h1 class="text-xl text-center sm:text-left sm:text-5xl py-8 font-extrabold">
                             Welcome to .esrup!
                         </h1>
@@ -20,13 +20,21 @@
                     </div>
                 </div>
                 <div class="px-8 mb-8">
+                    <div role="alert" v-if="errorMessage" class="bg-red-800 border border-red-200 text-red-50 px-4 py-3 rounded relative mt-3 mx-auto flex space-x-2 flex-1 items-center justify-center">
+                        <span class="-ml-1">
+                        <ExclamationTriangleIcon class="w-6 h-6 text-yellow-100" />
+                        </span>
+                        <!--  -->
+                        <span class="leading-4 mb-1">{{errorMessage}}</span>
+                        
+                    </div>
                     <!-- <button
                         class="px-16 sm:px-0 w-full border-b-4 border-red-primary-translucent mb-3 sm:mb-6 text-sm sm:text-base font-semibold text-white bg-blue-accent rounded-lg py-4">
                         Try it free 7 days
                         <span class="font-light"> then $20/mo. thereafter</span>
                     </button> -->
-                    <div class="rounded-lg bg-white p-5 sm:p-10 border-b-4 border-red-primary-translucent">
-                        <Form @submit.prevent="onSubmit" :validation-schema="schema">
+                    <div v-motion-pop class="rounded-lg bg-white p-5 sm:p-10 border-b-4 border-red-primary-translucent">
+                        <Form @submit="onSubmit" :validation-schema="schema">
                             <Field name="firstName" type="text"
                                 class="outline-none w-full focs:border-2 focus:border-blue-accent text-black text-sm font-semibold border py-4 px-8 rounded-lg mb-4"
                                 placeholder="First Name" />
@@ -90,40 +98,47 @@ import {
     Form, Field,
     ErrorMessage,
 } from 'vee-validate';
+import { ExclamationTriangleIcon } from "@heroicons/vue/24/outline";
 import { onMounted, onUnmounted, ref, watch } from "vue";
 import { object, string, ref as yupRef } from 'yup';
 import {  } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { useStore } from "vuex";
+import { NewUser } from "../generated";
 
-const onSubmit = (ev: Event) => {
+const store = useStore();
+const router = useRouter();
+let loading = false;
+let errorMessage = ref('');
 
+const onSubmit = (user: NewUser) => {
+    loading = true;
+    store.dispatch("auth/register", user).then(
+        (x) => {
+            errorMessage.value = '';
+            console.log(x)
+        }
+    ).catch(
+        (error) => {
+            console.log(error);
+            loading = false;
+            errorMessage.value = error.body?.error?.message;
+            console.log(error.url, error.body, errorMessage.value);
+        }
+    )
+  console.log(loading, user);
 }
 
 const schema = object({
-    email: string().required().min(3, 'must be at least 3 characters long').email('must be a valid email').label('Email Address'),
+    email: string().required().min(3, 'Must be at least 3 characters long').email('Must be a valid email').label('Email Address'),
     firstName: string().required().min(3).label('First Name'),
     lastName: string().required().min(3).label('Last Name'),
     password: string().required().min(8).label('Your Password'),
     confirmPassword: string().required().oneOf([yupRef("password")], "Passwords must match!").label('Confirm Password'),
     phone: string().required().min(5).label("Phone"),
     address: string().required().min(10).label("Address"),
-})
+});
 
-const validateEmail = (value: string) => {
-    // if the field is empty
-    if (!value) {
-        return 'This field is required';
-    }
-
-    // if the field is not a valid email
-    const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    if (!regex.test(value)) {
-        return 'This field must be a valid email';
-    }
-
-    // All is good
-    return true;
-}
 
 let viewportWidth = ref(window.innerWidth);
 let viewportHeight = ref(window.innerHeight);

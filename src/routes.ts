@@ -6,6 +6,7 @@ import {
     Checkout,
     Signin,
     Signup,
+    Profile,
     NotFound
 } from "./pages";
 import { RouteRecordRaw } from "vue-router";
@@ -44,6 +45,13 @@ export const routes: RouteRecordRaw[] = [
         path: "/signin",
         name: "signin",
         component: Signin,
+        meta: {
+            transition: "slide-up"
+        }
+    }, {
+        path: "/profile",
+        name: "profile",
+        component: Profile,
         meta: {
             transition: "slide-up"
         }

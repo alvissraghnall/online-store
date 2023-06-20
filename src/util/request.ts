@@ -5,12 +5,12 @@ import axios from 'axios';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import FormData from 'form-data';
 
-import { ApiError } from './ApiError';
-import type { ApiRequestOptions } from './ApiRequestOptions';
-import type { ApiResult } from './ApiResult';
-import { CancelablePromise } from './CancelablePromise';
-import type { OnCancel } from './CancelablePromise';
-import { OpenAPI, type OpenAPIConfig } from './OpenAPI';
+import { OpenAPI, type OpenAPIConfig, ApiError, CancelablePromise, type OnCancel } from '../generated';
+import type { ApiRequestOptions } from '../generated/ApiRequestOptions';
+import type { ApiResult } from '../generated/ApiResult';
+// import { CancelablePromise } from './CancelablePromise';
+// import type { OnCancel } from './CancelablePromise';
+// import { OpenAPI, type OpenAPIConfig } from './OpenAPI';
 
 export const AUTH_REQ = () => {
     const defaultOptions = {

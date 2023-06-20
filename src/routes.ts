@@ -14,15 +14,18 @@ export const routes: RouteRecordRaw[] = [
     {
         path: "/",
         component: Home,
+        name: "home",
     },
     {
         path: "/products",
+        name: "products",
         component: Products,
         meta: {
             transition: "slide-left"
         }
     },
     {
+        name: "product-details",
         path: "/products/:id",
         component: ProductDetails,
         meta: {
@@ -31,6 +34,7 @@ export const routes: RouteRecordRaw[] = [
     },
     {
         path: "/cart",
+        name: "cart",
         component: Cart,
         meta: {
             transition: "slide-right"
@@ -54,6 +58,7 @@ export const routes: RouteRecordRaw[] = [
     },
     {
         path: "/:pathMatch(.*)*",
+        name: 'not-found',
         component: NotFound
     }
 ]

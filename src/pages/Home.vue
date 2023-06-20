@@ -164,8 +164,8 @@ addIcons(...serviceIcons);
 
 const countDownDate = {
     year: 2023,
-    month: 5,
-    day: 11
+    month: 6,
+    day: 25
 }
 
 const state = reactive({

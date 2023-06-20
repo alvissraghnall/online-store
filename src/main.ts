@@ -2,19 +2,13 @@ import { createApp } from 'vue'
 import './style.css';
 import 'vue3-toastify/dist/index.css';
 import App from './App.vue'
-import { createRouter, createWebHistory } from "vue-router";
-import { routes } from './routes';
 import Vue3Toasity, { type ToastContainerOptions } from 'vue3-toastify';
 import { HeadVuePlugin } from "@vueuse/head";
 import { register } from "swiper/element/bundle";
 import store from './store';
+import router from './router';
 
 register();
-
-const router = createRouter({
-    history: createWebHistory(),
-    routes
-});
 
 const app = createApp(App);
 

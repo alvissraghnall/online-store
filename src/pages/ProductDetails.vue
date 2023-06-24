@@ -140,6 +140,7 @@ import { useStore } from "vuex";
 import { allProducts } from "../assets/mock/products";
 import { ProductItemCard, Toast } from "../components";
 import { toast, type ToastOptions } from 'vue3-toastify';
+import { CartActions } from "@/store/constants";
 
 let rating = 4;
 let reviews = [{
@@ -154,7 +155,7 @@ let reviews = [{
 }]
 let tab = ref<"desc" | "rev">("desc");
 const { id } = useRoute().params;
-const product = allProducts.find(prod => prod.id === Number.parseInt(id as string));
+const product = allProducts.find(prod => Number.parseInt(prod.id) === Number.parseInt(id as string));
 const { 
     name,
     image,
@@ -190,16 +191,16 @@ const store = useStore();
 let timeout: number;
 
 const addToCart = () => {
-    store.commit('ADD_CART_ITEM', product);
+    store.dispatch(`cart/${CartActions.ADD_ITEM}`, product);
 
     // showToast.value = true;
     // timeout = setTimeout(() => {
     //     showToast.value = false;
     // }, 7000)
-    toast.success("Item added to cart!", {
-        autoClose: 5700, 
-        // position: toast.POSITION.TOP_RIGHT,
-    } as ToastOptions)
+    // toast.success("Item added to cart!", {
+    //     autoClose: 3400, 
+    //     // position: toast.POSITION.TOP_RIGHT,
+    // } as ToastOptions)
 }
 
 const closeToast = () => {

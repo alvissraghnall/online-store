@@ -1,11 +1,12 @@
 import { createStore } from 'vuex';
-import { auth, type AuthState } from "./auth.module";
-import { cart } from "./cart.module";
-import { StoreState } from '../models/state/app-state.state';
+// import { auth, type AuthState } from "./modules/auth.module";
+import { cart, auth, type AuthState } from "./modules";
+import { CartState } from './constants';
+// import { StoreState } from '../models/state/app-state.state';
 
 export type RootState = {
     auth: AuthState,
-    cart: StoreState
+    cart: CartState
 }
 
 const store = createStore<RootState>({

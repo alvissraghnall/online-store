@@ -24,4 +24,7 @@ dist-ssr
 *.sw?
 
 .env
-generated
+
+#generated files
+src/generated
+openapi

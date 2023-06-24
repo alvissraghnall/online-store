@@ -1,5 +1,4 @@
-import AuthService from '../services/auth.service';
-import { AuthControllerService, NewUser } from "../generated";
+import { AuthControllerService, NewUser } from "../../generated";
 // import type { NewUser } from '../generated/models/NewUser';
 import type { Module } from "vuex";
 import router from "@/router";
@@ -65,7 +64,8 @@ export const auth: Module<AuthState, any> = {
             );
         },
         logout({ commit }) {
-            AuthService.logout();
+            localStorage.removeItem("JWT_TOKEN");
+            localStorage.removeItem('user');
             commit('logout');
 
             router.push({ name: 'login' });
@@ -79,7 +79,9 @@ export const auth: Module<AuthState, any> = {
                         hideProgressBar: false,
                         pauseOnHover: false,
                     } as ToastOptions);
-                    router.push({ name: 'login' });
+                    setTimeout(() => {
+                        router.push({ name: "signin" });
+                    }, 5000);
                     
                     return Promise.resolve(user);
                 },

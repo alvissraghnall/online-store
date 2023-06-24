@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="px-8 mb-8">
-                    <div role="alert" v-if="errorMessage" class="bg-red-800 border border-red-200 text-red-50 px-4 py-3 rounded relative mt-3 mx-auto flex space-x-2 flex-1 items-center justify-center">
+                    <div role="alert" v-if="errorMessage" class="bg-red-800 border border-red-200 text-red-50 px-4 py-3 rounded relative mt-3 mx-auto flex space-x-2 flex-1 items-center justify-center mb-4 w-fit">
                         <span class="-ml-1">
                         <ExclamationTriangleIcon class="w-6 h-6 text-yellow-100" />
                         </span>
@@ -111,12 +111,14 @@ const router = useRouter();
 let loading = false;
 let errorMessage = ref('');
 
-const onSubmit = (user: NewUser) => {
+const onSubmit = (user: NewUser, { resetForm }: any) => {
     loading = true;
     store.dispatch("auth/register", user).then(
         (x) => {
             errorMessage.value = '';
             console.log(x)
+
+            resetForm();
         }
     ).catch(
         (error) => {

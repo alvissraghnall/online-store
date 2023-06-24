@@ -28,7 +28,7 @@
 </style>
 
 <script setup lang="ts">
-import { Product } from "../models/Product.model";
+import { type Product } from "@/generated";
 import Star from "./Star.vue";
 
 const props = defineProps<{

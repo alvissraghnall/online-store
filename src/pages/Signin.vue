@@ -145,4 +145,4 @@ onUnmounted(() => {
     document.body.style.backgroundImage = '';
 
 });
-</script>
+</script>@/store/modules/auth.module

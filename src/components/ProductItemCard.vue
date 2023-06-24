@@ -85,9 +85,10 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { useStore } from 'vuex';
-import { Product } from '../models/Product.model';
+import { Product } from '@/generated';
 import Toast from './Toast.vue';
 import type { RootState } from '@/store';
+import { CartActions } from '@/store/constants';
 
 let showToast = ref(false);
 const xtive = reactive({
@@ -101,14 +102,10 @@ const store = useStore<RootState>();
 let timeout: number;
 // store.dispatch()
 const addToCart = () => {
-    store.commit('cart/ADD_CART_ITEM', props.product);
+    store.dispatch(`cart/${CartActions.ADD_ITEM}`, props.product);
     // alert("Product added to cart!")
     console.log(store.getters.totalQuantity, store.getters.totalAmount);
     
-    xtive.showToast = true;
-    timeout = window.setTimeout(() => {
-        xtive.showToast = false;
-    }, 7000)
 }
 
 const closeToast = () => {

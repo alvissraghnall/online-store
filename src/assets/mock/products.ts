@@ -23,7 +23,7 @@ import wireless_3 from "../wireless-03.png";
 
 export const products = [
     {
-        id: 1001,
+        id: "1001",
         name: "Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport",
         image: "https://flowbite.com/docs/images/products/apple-watch.png",
         price: 599,
@@ -31,28 +31,28 @@ export const products = [
         description: "Lorem ipsum dolor sit amet, consectur manet ilit de la fried. Sa aldier na walters kur livre. Hapus Corpus!"
     },
     {
-        id: 1,
+        id: "1",
         name: 'Gaze Pad Mouse',
         image: gazePadMouse,
         price: 100,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 1',
     }, {
-        id: 2,
+        id: "2",
         name: 'Product 2',
         image: adonitAmazonOffer,
         price: 100,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 1',
     }, {
-        id: 3,
+        id: "3",
         name: 'Finger Tip Microscope',
         image: fingertipMicroscope,
         price: 145,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'category 2',
     }, {
-        id: 4,
+        id: "4",
         name: 'Product 4',
         image: pocketProjector,
         price: 340,
@@ -60,7 +60,7 @@ export const products = [
         category: 'category 3',
     
     }, {
-        id: 5,
+        id: "5",
         name: 'Product 5',
         image: incharge6Cable,
         price: 1920,
@@ -68,7 +68,7 @@ export const products = [
         category: 'category 2',
     
     }, {
-        id: 6,
+        id: "6",
         name: 'Product 6',
         image: incharge,
         price: 7000,
@@ -76,7 +76,7 @@ export const products = [
         category: 'category 2',
     
     }, {
-        id: 7,
+        id: "7",
         name: 'Product 7',
         image: moftX,
         price: 740,
@@ -84,7 +84,7 @@ export const products = [
         category: 'category 2',
     
     }, {
-        id: 8,
+        id: "8",
         name: 'Product 8',
         image: incharge6Cable,
         price: 239,
@@ -92,7 +92,7 @@ export const products = [
         category: 'category 4',
     
     }, {
-        id: 9,
+        id: "9",
         name: 'Product 9',
         image: razorKishi,
         price: 53,
@@ -100,7 +100,7 @@ export const products = [
         category: 'category 3',
     
     }, {
-        id: 10,
+        id: "10",
         name: 'Product 10',
         image: pivoPod,
         price: 100,
@@ -108,7 +108,7 @@ export const products = [
         category: 'category 4',
     
     }, {
-        id: 11,
+        id: "11",
         name: 'Product 11',
         image: airOmni,
         price: 100,
@@ -120,42 +120,42 @@ export const products = [
 
 export const phones = [
     {
-        id: 12,
+        id: "12",
         name: 'Phone A',
         image: phoneA,
         price: 295,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'POWER_BANKS',
     },{
-        id: 13,
+        id: "13",
         name: 'Phone B',
         image: phoneB,
         price: 850,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'POWER_BANKS',
     },{
-        id: 14,
+        id: "14",
         name: 'Phone C',
         image: phoneC,
         price: 351,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'POWER_BANKS',
     }, {
-        id: 20,
+        id: "20",
         name: 'Phone D',
         image: phoneD,
         price: 9023,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'POWER_BANKS',
     },{
-        id: 15,
+        id: "15",
         name: 'Phone E',
         image: phoneE,
         price: 89,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'POWER_BANKS',
     },{
-        id: 16,
+        id: "16",
         name: 'Phone F',
         image: phoneF,
         price: 4766,
@@ -166,21 +166,21 @@ export const phones = [
 
 export const headset = [
     {
-        id: 17,
+        id: "17",
         name: 'Headset Ultra',
         image: wireless_2,
         price: 400,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'HEADSETS',
     },{
-        id: 18,
+        id: "18",
         name: 'Karma Sutra Headset',
         image: wireless_1,
         price: 48,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl. Sed euismod, nisl nec aliquam aliquam, nisl nisl aliquam nisl, nec aliquam nisl nisl sit amet nisl.',
         category: 'HEADSETS',
     },{
-        id: 19,
+        id: "19",
         name: 'Wireless Headset',
         image: wireless_3,
         price: 610,

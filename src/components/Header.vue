@@ -89,7 +89,7 @@ import { ignoreBaseComps } from "../util/hide-base-helper";
 let isCartOpen = ref(false);
 addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp);
 
-const totalQuantity = computed(() => useStore().getters.totalQuantity);
+const totalQuantity = computed(() => useStore().getters["cart/totalQuantity"]);
 // ref(useStore().getters.totalQuantity);
 // const re = reactive({
 //   totalQuantity

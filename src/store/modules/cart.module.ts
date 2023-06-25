@@ -12,12 +12,16 @@ export const cart: Module<CartState, RootState> = {
         items: [],
     },
     actions: {
-        [CartActions.ADD_ITEM] ({ commit, state, rootState }, payload: CartItem) {
+        [CartActions.ADD_ITEM] ({ commit, state, rootState }, payload: Product & { quantity?: number }) {
             if (!rootState.auth.status.loggedIn) {
                 router.push({ name: 'signin' });
             } else {
+                const data = {
+                    productId: payload.id,
+                    quantity: payload.quantity
+                }
                 CartControllerService.cartControllerAddItem(
-                    payload
+                    data
                 ).then(
                     response => {
                         commit(CartMutations.ADD_ITEM, payload);

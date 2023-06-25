@@ -95,7 +95,7 @@ import { ExclamationTriangleIcon } from "@heroicons/vue/24/outline";
 import { onMounted, onUnmounted, ref, computed } from "vue";
 import { object, string } from "yup";
 import { useStore } from "vuex";
-import { AuthState } from "@/store/auth.module";
+import { AuthState } from "@/store/modules/auth.module";
 import { useRouter } from "vue-router";
 import { AuthControllerService, NewUser } from "../generated";
 const store = useStore();

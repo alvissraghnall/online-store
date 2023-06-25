@@ -1,6 +1,6 @@
 <template>
 
-    <section class="bg-teal-200 w-screen flex flex-col-reverse sm:flex-row p-4">
+    <section class="bg-teal-200 w-full flex flex-col-reverse sm:flex-row p-4">
         <div class="w-full sm:w-1/2 my-12 m-4">
             <p class="m-4 text-sm md:text-base font-mono font-light text-slate-700">
                 Trending product in {{ monthYear }}
@@ -107,7 +107,7 @@
     </section>
 
     <section>
-        <div class="m-8 w-full">
+        <div class="my-8 w-full">
             <h2 class="mx-auto text-slate-800 font-semibold text-lg font-mono capitalize text-center p-8 sm:text-xl md:text-2xl lg:text-3xl">
                 new arrivals
             </h2>
@@ -121,7 +121,7 @@
     </section>
 
     <section>
-        <div class="m-8 w-full">
+        <div class="my-8 w-full">
             <h2 class="mx-auto text-slate-800 font-semibold text-lg font-mono capitalize text-center p-8 sm:text-xl md:text-2xl lg:text-3xl"> 
                 popular in category
             </h2>

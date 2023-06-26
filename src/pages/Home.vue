@@ -73,7 +73,7 @@
             :speed="500"
         >
             <swiper-slide 
-                v-for="product in products" 
+                v-for="product in swiperProducts" 
             >
                 <ProductCard :product="product" />
             </swiper-slide>
@@ -126,7 +126,7 @@
                 popular in category
             </h2>
             <div class="flex flex-wrap justify-evenly">
-                <div v-for="product in phones">
+                <div v-for="product in mobiles">
                     <ProductItemCard :product="product" />
                 </div> 
             </div>
@@ -152,9 +152,10 @@ import { FaShippingFast, FcCustomerSupport, MdHighquality } from "oh-vue-icons/i
 import { GiCycle } from "oh-vue-icons/icons/gi";
 import { RiSecurePaymentLine, RiTruckLine } from "oh-vue-icons/icons/ri";
 import { ServicesCard, ProductCard, ProductItemCard, Countdown } from "../components";
-import { products, newArrivals, phones } from "../assets/mock/products";
+import { phones } from "../assets/mock/products";
 import { services } from "../assets/mock/services";
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, ref } from "vue";
+import { Product, ProductControllerService } from "@/generated";
 let date = new Date();
 
 let monthYear = date.toLocaleString("en-us", { month: "long", year: "numeric" });
@@ -167,6 +168,21 @@ const countDownDate = {
     month: 6,
     day: 25
 }
+
+const products = ref<Product[] | null>(null);
+const swiperProducts = ref<Product[] | null>(null);
+const newArrivals = ref<Product[] | null>(null);
+const mobiles = ref<Product[] | null>(null);
+
+
+ProductControllerService.productControllerFind()
+    .then((res) => {
+        console.log(res);
+        products.value = res;
+        newArrivals.value = res.slice(0).sort((a, b) => Date.parse(b.createdAt ?? '') - Date.parse(a.createdAt ?? '')).slice(0, 15);
+        mobiles.value = res.filter((product) => product.category === 'mobile').slice(0, 15);
+        swiperProducts.value = res.slice(0, 7);
+    });
 
 const state = reactive({
     countdownPassed: false

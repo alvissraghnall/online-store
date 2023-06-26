@@ -55,7 +55,7 @@
             />
             <span class="absolute top-0 right-0 w-4 h-4 z-10 font-semibold flex items-center justify-center rounded-full text-xs bg-[#646cff] text-[#eee] mr-2.5 md:mr-0">
               <!-- badge -->
-              {{ totalQuantity }}
+              {{ totalQuantity || 0 }}
             </span>
         </span>
         <span class="h-full w-full">
@@ -83,13 +83,15 @@ import { ref, VNodeRef, onMounted, onUnmounted, reactive, computed } from "vue";
 import { mapState, useStore } from "vuex";
 import CartOverlay from "./CartOverlay.vue";
 import { ignoreBaseComps } from "../util/hide-base-helper";
+import { StoreNames } from "@/store/store-names.enum";
+import { CartActions, CartGetters } from "@/store/constants";
 // import { useRouter } from "vue-router";
 
-
+const store = useStore();
 let isCartOpen = ref(false);
 addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp);
 
-const totalQuantity = computed(() => useStore().getters["cart/totalQuantity"]);
+const totalQuantity = computed(() => store.getters[`${StoreNames.CART}/${CartGetters.TOTAL_QUANTITY}`]);
 // ref(useStore().getters.totalQuantity);
 // const re = reactive({
 //   totalQuantity
@@ -113,6 +115,7 @@ const stickyHeader = () => {
 
 onMounted(() => {
   stickyHeader();
+  store.dispatch(`${StoreNames.CART}/${CartActions.GET_CART}`);
 });
 
 onUnmounted(() => {

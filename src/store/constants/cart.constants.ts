@@ -14,3 +14,9 @@ export enum CartActions {
     GET_CART = 'getCart',
     REMOVE_ITEM = "removeItem",
 }
+
+export enum CartGetters {
+    ITEMS = 'items',
+    TOTAL_QUANTITY = 'totalQuantity',
+    TOTAL_AMOUNT = 'totalAmount',
+}

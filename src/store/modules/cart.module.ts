@@ -2,7 +2,7 @@ import type { Module } from "vuex";
 // import { Product } from '../models/Product.model';
 import router from "@/router";
 import { CartControllerService, type Cart, type Product, CartItem } from "@/generated";
-import { CartActions, CartMutations, CartState } from "../constants";
+import { CartActions, CartGetters, CartMutations, CartState } from "../constants";
 import { RootState } from "..";
 import { toast } from "vue3-toastify";
 
@@ -43,11 +43,11 @@ export const cart: Module<CartState, RootState> = {
                 )
             }
         },
-        [CartActions.GET_CART] ({ commit, state, rootState }, payload: Cart) {
+        [CartActions.GET_CART] ({ commit, state, rootState }) {
             CartControllerService.cartControllerFindByUserId()
                 .then(
                     response => {
-                        commit(CartMutations.GET_CART, payload);
+                        commit(CartMutations.GET_CART, response);
                     }
                 ).catch(
                     error => {
@@ -62,9 +62,9 @@ export const cart: Module<CartState, RootState> = {
         }
     },
     mutations: {
-        [CartMutations.ADD_ITEM] (state, payload: CartItem) {
+        [CartMutations.ADD_ITEM] (state, payload: Product & { quantity?: number }) {
             // const { description, category, rating, ...prod } = payload;
-            const existingItem = state.items?.find(item => item.productId === payload.productId);
+            const existingItem = state.items?.find(item => item.productId === payload.id);
 
             if(!existingItem) {
                 state.items?.push({
@@ -72,7 +72,7 @@ export const cart: Module<CartState, RootState> = {
                     quantity: payload.quantity ?? 1,
                 })
             } else {
-                existingItem.quantity += payload.quantity;
+                existingItem.quantity += (payload.quantity ?? 1);
                 // existingItem.totalPrice += prod.price;
             }
 
@@ -80,6 +80,7 @@ export const cart: Module<CartState, RootState> = {
         },
         [CartMutations.GET_CART] (state, payload: Cart) {
             state.items = payload.items;
+            console.log(state.items);
         },
         [CartMutations.GET_CART_FALLBACK] (state) {
             state.items = [];
@@ -87,12 +88,12 @@ export const cart: Module<CartState, RootState> = {
         [CartMutations.ADD_ITEM_FALLBACK] (state) {}
     },
     getters: {
-        totalAmount: state => state.items?.reduce(
+        [CartGetters.TOTAL_AMOUNT]: state => state.items?.reduce(
             (acc, curr) => acc + (curr.product?.price ?? 0) * curr.quantity, 0
         ),
-        totalQuantity: state => state.items?.reduce(
+        [CartGetters.TOTAL_QUANTITY]: state => state.items?.reduce(
             (acc, cartItem) => acc + cartItem.quantity, 0
         ),
-        items: state => state.items,
+        [CartGetters.ITEMS]: state => state.items,
     }
 }

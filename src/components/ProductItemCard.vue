@@ -1,13 +1,31 @@
 <template>
     <!-- UI card from https://uxplanet.org/ultimate-guide-for-designing-ui-cards-59488a91b44f -->
-    <div class=" flex flex-col justify-center">
+    <div v-motion-pop-visible class=" flex flex-col justify-center">
         <div class="relative m-3 flex flex-wrap mx-auto justify-center">
 
             <div class="relative max-w-sm min-w-[340px] bg-white shadow-md rounded-3xl p-2 mx-1 my-3 cursor-pointer">
-                <div class="overflow-x-hidden rounded-2xl relative">
-                    <!-- <img class="h-40 rounded-2xl w-full object-cover"
-                        src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg"> -->
-                    <img class="h-40 rounded-2xl w-full object-cover hover:object-contain hover:scale-[.9] transition-all ease-in-out duration-300" :src="product.image">
+                <div class="overflow-hidden rounded-2xl relative">
+                    <img 
+                        v-motion
+                        :initial="{
+                            scale: 1.2,
+                            // transition: {
+                            //     ease: [0.175, 0.885, 0.32, 1.275], // 0.4, 0, 0.2, 1
+                            //     duration: 0.3,
+                            //     delay: 55
+                            // }
+                        }"
+                        :hovered="{
+                            scale: 1,
+                            
+                        }"
+                        :visible="{
+                            scale: 1.2,
+                        }"
+                        :delay="130"
+                        class="h-40 rounded-2xl w-full object-cover transition-all ease-in-out duration-300" 
+                        :src="product.image"
+                    >
                     <p class="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group" @click="addToCart">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:opacity-50 opacity-70"
                             fill="none" viewBox="0 0 24 24" stroke="black">
@@ -104,7 +122,7 @@ let timeout: number;
 const addToCart = () => {
     store.dispatch(`cart/${CartActions.ADD_ITEM}`, props.product);
     // alert("Product added to cart!")
-    console.log(store.getters.totalQuantity, store.getters.totalAmount);
+    console.log(store.getters["cart/totalQuantity"], store.getters["cart/totalAmount"]);
     
 }
 

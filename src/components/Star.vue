@@ -1,5 +1,5 @@
 <template>
-    <svg :class="{ hidden: n === 0 }" aria-hidden="true" class="group w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <svg :class="{ 'text-yellow-300': n < idx }" aria-hidden="true" class="group w-5 h-5 text-white border-yellow-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <title>
             {{ ordinal }} star
         </title>
@@ -11,8 +11,9 @@
 import { defineProps } from "vue";
 
 const props = defineProps<{
+    idx: number,
     n: number
 }>();
 
-let ordinal = props.n === 1 ? "1st" : (props.n === 2 ? "2nd" : (props.n === 3 ? "3rd" : props.n.toString().concat("th")));
+let ordinal = props.idx === 1 ? "1st" : (props.idx === 2 ? "2nd" : (props.idx === 3 ? "3rd" : props.idx.toString().concat("th")));
 </script>

@@ -44,7 +44,9 @@ export const auth: Module<AuthState, any> = {
                         hideProgressBar: false,
                         pauseOnHover: false,
                     } as ToastOptions);
-                    router.push("/profile");
+                    setTimeout(() => {
+                        router.push({ name: "home" });
+                    }, 4800);
                     localStorage.setItem("user", user.email);
                     localStorage.setItem("JWT_TOKEN", response.token ?? '');
                     

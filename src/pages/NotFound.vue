@@ -16,8 +16,8 @@
                     <p class="text-gray-100 mt-2 mb-6">we are sorry, but the page you requested was not found</p>
                     <router-link
                         to="/"
-                        class="bg-green-400  px-5 py-3 text-sm shadow-sm font-medium tracking-wider text-gray-50 rounded-full hover:shadow-lg">
-                        Got to Home
+                        class="bg-green-600  px-5 py-3 text-sm shadow-sm font-semibold tracking-wider text-gray-50 rounded-full hover:shadow-lg hover:bg-transparent hover:text-green-600 border border-transparent hover:border-green-600">
+                        Go to Home
                     </router-link>
                 </div>
             </div>

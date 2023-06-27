@@ -2,7 +2,7 @@ import type { Module } from "vuex";
 // import { Product } from '../models/Product.model';
 import router from "@/router";
 import { CartControllerService, type Cart, type Product, CartItem } from "@/generated";
-import { CartActions, CartGetters, CartMutations, CartState } from "../constants";
+import { CartActions, CartGetters, CartMutations, CartState, CartStateItem } from "../constants";
 import { RootState } from "..";
 import { toast } from "vue3-toastify";
 
@@ -12,12 +12,12 @@ export const cart: Module<CartState, RootState> = {
         items: [],
     },
     actions: {
-        [CartActions.ADD_ITEM] ({ commit, state, rootState }, payload: Product & { quantity?: number }) {
+        [CartActions.ADD_ITEM] ({ commit, state, rootState }, payload: Required<CartStateItem> & Partial<Pick<CartStateItem, "quantity">>) {
             if (!rootState.auth.status.loggedIn) {
                 router.push({ name: 'signin' });
             } else {
                 const data = {
-                    productId: payload.id,
+                    productId: payload.product.id,
                     quantity: payload.quantity
                 }
                 CartControllerService.cartControllerAddItem(
@@ -62,9 +62,9 @@ export const cart: Module<CartState, RootState> = {
         }
     },
     mutations: {
-        [CartMutations.ADD_ITEM] (state, payload: Product & { quantity?: number }) {
+        [CartMutations.ADD_ITEM] (state, payload: CartStateItem) {
             // const { description, category, rating, ...prod } = payload;
-            const existingItem = state.items?.find(item => item.productId === payload.id);
+            const existingItem = state.items?.find(item => item.productId === payload.product.id);
 
             if(!existingItem) {
                 state.items?.push({

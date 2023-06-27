@@ -25,23 +25,23 @@
                       <div class="mt-8">
                         <div class="flow-root">
                           <ul role="list" class="-my-6 divide-y divide-gray-200">
-                            <li v-for="product in products" :key="product.id" class="flex py-6">
+                            <li v-for="item in items" :key="item.product.id" class="flex py-6">
                               <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                <img :src="product.imageSrc" :alt="product.imageAlt" class="h-full w-full object-cover object-center" />
+                                <img :src="item.product.image" :alt="item.product.name" class="h-full w-full object-cover object-center" />
                               </div>
   
                               <div class="ml-4 flex flex-1 flex-col">
                                 <div>
                                   <div class="flex justify-between text-base font-medium text-gray-900">
                                     <h3>
-                                      <a :href="product.href">{{ product.name }}</a>
+                                      <router-link :to="'/product' + item.product.id">{{ item.product.name }}</router-link>
                                     </h3>
-                                    <p class="ml-4">{{ product.price }}</p>
+                                    <p class="ml-4 font-semibold text-xs leading-4 text-gray-500 my-2">${{ item.product.price }}</p>
                                   </div>
-                                  <p class="mt-1 text-sm text-gray-500">{{ product.color }}</p>
+                                  <p class="mt-1 text-sm text-gray-500 capitalize">{{ item.product.category }}</p>
                                 </div>
                                 <div class="flex flex-1 items-end justify-between text-sm">
-                                  <p class="text-gray-500">Qty {{ product.quantity }}</p>
+                                  <p class="text-gray-500">Qty: {{ item.quantity }}</p>
   
                                   <div class="flex">
                                     <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
@@ -57,11 +57,11 @@
                     <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div class="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p>${{totalAmount}}</p>
                       </div>
                       <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div class="mt-6">
-                        <a href="#" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</a>
+                        <router-link to="/checkout" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-white hover:text-indigo-600 hover:border-indigo-600 transition delay-10 duration-200 ease-out">Checkout</router-link>
                       </div>
                       <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
@@ -84,11 +84,21 @@
   </template>
   
   <script setup lang="ts">
-  import { ref } from 'vue'
+  import { computed, ref, onMounted } from 'vue'
   import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
-  import { XMarkIcon } from '@heroicons/vue/24/outline'
+  import { XMarkIcon } from '@heroicons/vue/24/outline';
+  import { useStore } from "vuex";
+  import { type RootState } from '@/store';
+import { CartActions, CartGetters, CartStateItem } from '@/store/constants';
+import { StoreNames } from '@/store/store-names.enum';
+import { Product } from '@/generated';
   
-  const products = [
+  const store = useStore<RootState>();
+
+  const items = computed<CartStateItem[]>(() => store.getters[`${StoreNames.CART}/${CartGetters.ITEMS}`]);
+  const totalAmount = computed<number>(() => store.getters[`${StoreNames.CART}/${CartGetters.TOTAL_AMOUNT}`]);
+
+  /** const products = [
     {
       id: 1,
       name: 'Throwback Hip Bag',
@@ -111,9 +121,14 @@
         'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
     },
     // More products...
-  ]
+  ] */
   
   const props = defineProps<{
     open: boolean
   }>();
+
+  
+  onMounted(() => {
+    store.dispatch(`${StoreNames.CART}/${CartActions.GET_CART}`)
+  });
   </script>

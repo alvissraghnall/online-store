@@ -24,7 +24,7 @@
                         }"
                         :delay="130"
                         class="h-40 rounded-2xl w-full object-cover transition-all ease-in-out duration-300" 
-                        :src="product.image"
+                        :src="transformCld(product.image)"
                     >
                     <p class="absolute right-2 top-2 bg-white rounded-full p-2 cursor-pointer group" @click="addToCart">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:opacity-50 opacity-70"
@@ -106,7 +106,7 @@ import { useStore } from 'vuex';
 import { Product } from '@/generated';
 import Toast from './Toast.vue';
 import type { RootState } from '@/store';
-import { CartActions } from '@/store/constants';
+import { CartActions, CartStateItem } from '@/store/constants';
 
 let showToast = ref(false);
 const xtive = reactive({
@@ -120,10 +120,16 @@ const store = useStore<RootState>();
 let timeout: number;
 // store.dispatch()
 const addToCart = () => {
-    store.dispatch(`cart/${CartActions.ADD_ITEM}`, props.product);
+    const data: CartStateItem = { quantity: 1, product: props.product, productId: props.product.id }
+    store.dispatch(`cart/${CartActions.ADD_ITEM}`, data);
     // alert("Product added to cart!")
     console.log(store.getters["cart/totalQuantity"], store.getters["cart/totalAmount"]);
     
+}
+
+const transformCld = (lnk: string) => {
+    return lnk.replace('dcvx38ynp/image/upload', "dcvx38ynp/image/upload/w_600/q_30");
+    // return arr[0].concat("/image/upload/w_600/q_30").concat(arr[1]);
 }
 
 const closeToast = () => {

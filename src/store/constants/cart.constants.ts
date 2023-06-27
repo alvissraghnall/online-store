@@ -1,6 +1,8 @@
-import { Cart } from "@/generated";
+import { Cart, Product } from "@/generated";
 
 export type CartState = Pick<Cart, "items">;
+
+export type CartStateItem = { quantity: number, product: Product, productId?: string };
 
 export enum CartMutations {
     GET_CART = 'GET_CART',

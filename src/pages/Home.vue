@@ -1,5 +1,5 @@
 <template>
-
+    
     <section class="bg-teal-200 w-full flex flex-col-reverse sm:flex-row p-4">
         <div class="w-full sm:w-1/2 my-12 m-4">
             <p class="m-4 text-sm md:text-base font-mono font-light text-slate-700">
@@ -72,7 +72,12 @@
             }"
             :speed="500"
         >
+            <swiper-slide v-if="products === null" v-for="prod in 5">
+                <ProductCardSkeleton />
+            </swiper-slide>
+
             <swiper-slide 
+                v-else
                 v-for="product in swiperProducts" 
             >
                 <ProductCard :product="product" />
@@ -151,8 +156,8 @@ import { addIcons } from "oh-vue-icons";
 import { FaShippingFast, FcCustomerSupport, MdHighquality } from "oh-vue-icons/icons";
 import { GiCycle } from "oh-vue-icons/icons/gi";
 import { RiSecurePaymentLine, RiTruckLine } from "oh-vue-icons/icons/ri";
-import { ServicesCard, ProductCard, ProductItemCard, Countdown } from "../components";
-import { phones } from "../assets/mock/products";
+import { ServicesCard, ProductCard, ProductItemCard, Countdown, ProductCardSkeleton } from "../components";
+// import { phones } from "../assets/mock/products";
 import { services } from "../assets/mock/services";
 import { reactive, onMounted, ref } from "vue";
 import { Product, ProductControllerService } from "@/generated";
@@ -179,9 +184,10 @@ ProductControllerService.productControllerFind()
     .then((res) => {
         console.log(res);
         products.value = res;
-        newArrivals.value = res.slice(0).sort((a, b) => Date.parse(b.createdAt ?? '') - Date.parse(a.createdAt ?? '')).slice(0, 15);
-        mobiles.value = res.filter((product) => product.category === 'mobile').slice(0, 15);
+        newArrivals.value = res.slice(0).sort((a, b) => Date.parse(b.createdAt ?? '') - Date.parse(a.createdAt ?? '')).slice(0, 9);
+        mobiles.value = res.filter((product) => product.category === 'mobile').slice(0, 9);
         swiperProducts.value = res.slice(0, 7);
+        // artemsandov@samcloudq.com
     });
 
 const state = reactive({

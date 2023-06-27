@@ -21,7 +21,7 @@
     </div> -->
 
     <div class="relative m-3 flex flex-wrap mx-auto justify-center">
-                        <div class="min-w-[340px]flex flex-col group">
+                        <div class="min-w-[340px] flex flex-col group">
                             <div
                                 class="h-48 md:h-56 lg:h-[24rem] w-full bg-red-500 border-2 border-white flex items-center justify-center text-white text-base mb-3 md:mb-5 overflow-hidden relative">
 
@@ -72,10 +72,11 @@
 import { type Product } from "@/generated";
 import Star from "./Star.vue";
 import { RootState } from "@/store";
-import { CartActions } from "@/store/constants";
+import { CartActions, CartStateItem } from "@/store/constants";
 import { useStore } from "vuex";
 import { StarIcon } from "@heroicons/vue/24/solid";
 import { StarIcon as StarOutlineIcon } from "@heroicons/vue/24/outline";
+import { StoreNames } from "@/store/store-names.enum";
 
 const props = defineProps<{
     product: Product
@@ -86,7 +87,8 @@ const stars: number = Math.round(props.product.rating ?? 0);
 const store = useStore<RootState>();
 
 const addToCart = () => {
-    store.dispatch(`cart/${CartActions.ADD_ITEM}`, props.product);
+    const data: CartStateItem = { quantity: 1, product: props.product, productId: props.product.id }
+    store.dispatch(`${StoreNames.CART}/${CartActions.ADD_ITEM}`, data);
     // alert("Product added to cart!")
     console.log(store.getters["cart/totalQuantity"], store.getters["cart/totalAmount"]);
     

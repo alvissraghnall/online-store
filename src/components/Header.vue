@@ -38,12 +38,12 @@
     </nav>
 
     <div class="flex items-center space-x-4 min-w-[10rem] md:min-w-[8rem]">
-        <span class="relative cursor-pointer h-full w-full">
+        <span class="relative cursor-pointer h-full w-full space-x-2">
             <OhVueIcon 
                 name="md-favoriteborder-sharp" 
                 fill="#646cff" 
             />
-            <span class="absolute top-0 right-0 w-4 h-4 z-10 font-semibold flex items-center justify-center rounded-full text-xs bg-[#646cff] text-[#eee] mr-2.5 md:mr-0">
+            <span class="absolute mx-0 top-0 right-0 w-4 h-4 z-10 font-semibold flex items-center justify-center rounded-full text-xs bg-[#646cff] text-[#eee] mr-2.5 md:mr-0">
               <!-- badge -->
               4
             </span>
@@ -85,9 +85,10 @@ import CartOverlay from "./CartOverlay.vue";
 import { ignoreBaseComps } from "../util/hide-base-helper";
 import { StoreNames } from "@/store/store-names.enum";
 import { CartActions, CartGetters } from "@/store/constants";
+import { type RootState } from "@/store";
 // import { useRouter } from "vue-router";
 
-const store = useStore();
+const store = useStore<RootState>();
 let isCartOpen = ref(false);
 addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp);
 

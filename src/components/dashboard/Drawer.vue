@@ -64,7 +64,7 @@
   <div class="hidden lg:inline-block mt-12 ml-3 lg:mt-0 lg:top-12 border-neutral-700 fixed">
     <div class="flow-root">
       <ul role="list" class="my-6">
-        <li v-for="item in items" :key="item.name.toLowerCase()" class="flex py-2 items-center hover:bg-purple-200 active:bg-purple-200 hover:text-purple-500 px-2">
+        <li v-for="item in items" :key="item.name.toLowerCase()" class="flex py-2 items-center hover:bg-purple-200 rounded-sm transition duration-200 ease-in hover:text-purple-500 px-2">
           <div class="h-full w-12 flex-shrink-0 border-gray-200">
             <OhVueIcon :name="item.iconName" fill="#333333" />
           </div>

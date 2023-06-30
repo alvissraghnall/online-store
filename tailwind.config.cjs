@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./index.html", "./src/**/*.vue"],
@@ -12,7 +14,7 @@ module.exports = {
         "grayish-blue-neutral": "hsl(246, 25%, 77%)",
       },
       fontFamily: {
-        "poppins": ["Poppins"],
+        "poppins": ["Poppins", ...defaultTheme.fontFamily.sans],
         "dm_sans": ['"DM Sans"'],
         "inter": ['Inter'],
         "lato": ['Lato'],

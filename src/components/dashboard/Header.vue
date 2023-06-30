@@ -8,10 +8,8 @@
             
             <router-link to="/" class="flex justify-start items-center no-underline">
                 <span>
-                    <OhVueIcon 
-                        name="io-bag-handle-outline" 
-                        fill="#646cff"
-                        class="text-[#646cff] 2xl:w-9 2xl:h-9 w-7 h-7" 
+                    <ShoppingBagIcon 
+                        class="text-[#646cff] 2xl:w-7 2xl:h-7 w-5 h-5" 
                     />
                 </span>
                 <span class='font-mono ml-0.5 self-center text-xl font-semibold whitespace-nowrap'>.esrup</span>
@@ -24,6 +22,7 @@
 <script setup lang="ts">
 import {OhVueIcon, addIcons} from "oh-vue-icons";
 import { IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp, HiMenuAlt4,  } from "oh-vue-icons/icons";
+import { ShoppingBagIcon } from "@heroicons/vue/24/outline"
 import { ref } from "vue";
 
 addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp, HiMenuAlt4);

@@ -6,10 +6,11 @@ import {
     Checkout,
     Signin,
     Signup,
-    Profile,
     NotFound
-} from "./pages";
-import { RouteRecordRaw } from "vue-router";
+} from "../pages";
+import { type RouteRecordRaw } from "vue-router";
+import { userRoutes } from "./user.route";
+import { UserLayout } from "@/components/dashboard";
 
 export const routes: RouteRecordRaw[] = [
     {
@@ -49,12 +50,14 @@ export const routes: RouteRecordRaw[] = [
             transition: "slide-up"
         }
     }, {
-        path: "/profile",
-        name: "profile",
-        component: Profile,
+        path: "/user/:path",
+        name: "user",
+        component: UserLayout,
         meta: {
             transition: "slide-up"
-        }
+        },
+        children: userRoutes,
+        // beforeEnter: 
     }, 
     {
         path: "/signup",

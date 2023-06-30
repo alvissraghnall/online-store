@@ -38,7 +38,7 @@
     </nav>
 
     <div class="flex items-center space-x-4 min-w-[10rem] md:min-w-[8rem]">
-        <span class="relative cursor-pointer h-full w-full space-x-2">
+        <span class="relative cursor-pointer h-full w-full ml-1">
             <OhVueIcon 
                 name="md-favoriteborder-sharp" 
                 fill="#646cff" 
@@ -48,7 +48,7 @@
               4
             </span>
         </span>
-        <span class="relative cursor-pointer h-full w-full" @click="isCartOpen = true">
+        <span class="relative cursor-pointer h-full w-full ml-1" @click="isCartOpen = true">
             <OhVueIcon 
                 name="la-shopping-cart-solid" 
                 fill="#646cff" 

@@ -1,8 +1,8 @@
 <template>
-    <Header v-if="!ignoreBaseComps.includes($route.path.slice(1)) && $route.name !== 'not-found'" />
+    <Header v-if="!ignoreBaseComps.includes($route.path.slice(1)) && $route.name !== 'not-found' && !$route.name?.toString().startsWith('user')" />
 
         <router-view :key="$route.fullPath" />
-    <Footer v-motion-slide-visible-bottom v-if="!ignoreBaseComps.includes($route.path.slice(1)) && $route.name !== 'not-found'" />
+    <Footer v-motion-slide-visible-bottom v-if="!ignoreBaseComps.includes($route.path.slice(1)) && $route.name !== 'not-found' && !$route.name?.toString().startsWith('user')" />
 </template>
 
 

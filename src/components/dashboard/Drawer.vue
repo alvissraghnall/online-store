@@ -61,7 +61,7 @@
     </Dialog>
   </TransitionRoot>
 
-  <div class="hidden lg:inline-block mt-12 ml-3 border-neutral-700 fixed">
+  <div class="hidden lg:inline-block mt-12 ml-3 lg:mt-0 lg:top-12 border-neutral-700 fixed">
     <div class="flow-root">
       <ul role="list" class="my-6">
         <li v-for="item in items" :key="item.name.toLowerCase()" class="flex py-2 items-center hover:bg-purple-200 active:bg-purple-200 hover:text-purple-500 px-2">
@@ -106,7 +106,7 @@ import { CartActions, CartGetters, CartStateItem } from '@/store/constants';
 import { StoreNames } from '@/store/store-names.enum';
 
 addIcons(
-  FaRegularUserCircle, IoHeartOutline, FcSettings, BiBookmarks, MdDeliverydining, BiHeart
+  FaRegularUserCircle, IoHeartOutline, FcSettings, BiBookmarks, MdDeliverydining, BiHeart, CoUser
 );
 
 const store = useStore<RootState>();

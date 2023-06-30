@@ -50,7 +50,7 @@ export const routes: RouteRecordRaw[] = [
             transition: "slide-up"
         }
     }, {
-        path: "/user/:path",
+        path: "/user",
         name: "user",
         component: UserLayout,
         meta: {

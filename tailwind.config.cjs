@@ -10,6 +10,12 @@ module.exports = {
         "blue-accent": "hsl(248, 32%, 49%)",
         "dark-blue-neutral": "hsl(249, 10%, 26%)",
         "grayish-blue-neutral": "hsl(246, 25%, 77%)",
+      },
+      fontFamily: {
+        "poppins": ["Poppins"],
+        "dm_sans": ['"DM Sans"'],
+        "inter": ['Inter'],
+        "lato": ['Lato'],
       }
     },
     

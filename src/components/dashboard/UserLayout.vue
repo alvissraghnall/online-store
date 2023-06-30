@@ -1,6 +1,8 @@
 <template>
     <Header @sidebarOpened="() => sidebarOpen = true" />
     <Drawer :open="sidebarOpen" @close="() => sidebarOpen = false" />
+
+    <router-view :key="$route.fullPath" />
 </template>
 
 <script setup lang="ts">

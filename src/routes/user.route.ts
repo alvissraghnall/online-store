@@ -1,4 +1,4 @@
-import { Profile } from "@/pages";
+import { UserProfile } from "@/components/dashboard";
 import { RouteRecordRaw } from "vue-router";
 
 export enum UserRoutes {
@@ -10,6 +10,6 @@ export const userRoutes: RouteRecordRaw[] = [
     {
         name: UserRoutes.USER_PROFILE,
         path: "profile",
-        component: Profile,
+        component: UserProfile,
     },
 ]

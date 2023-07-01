@@ -15,8 +15,8 @@ module.exports = {
       },
       fontFamily: {
         "poppins": ["Poppins", ...defaultTheme.fontFamily.sans],
-        "dm_sans": ['"DM Sans"'],
-        "inter": ['Inter'],
+        "dm_sans": ['"DM Sans"', ...defaultTheme.fontFamily.sans],
+        "inter": ['Inter', ...defaultTheme.fontFamily.serif],
         "lato": ['Lato'],
       }
     },

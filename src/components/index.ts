@@ -7,3 +7,5 @@ export { default as ProductCard } from "./ProductCard.vue";
 export { default as CentralLayout } from "./CentralLayout.vue";
 export { default as ProductCardSkeleton } from "./ProductCardSkeleton.vue";
 export { default as Star } from "./Star.vue";
+
+export * from "./dashboard";

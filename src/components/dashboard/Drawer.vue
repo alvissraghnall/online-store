@@ -33,19 +33,22 @@
                     <div class="mt-8">
                       <div class="flow-root">
                         <ul role="list" class="-my-6">
-                          <li v-for="item in items" :key="item.name.toLowerCase()" class="flex py-2 items-center hover:bg-purple-200 active:bg-purple-200 hover:text-purple-500 px-2">
-                            <div class="h-full w-12 flex-shrink-0 border-gray-200">
-                              <OhVueIcon :name="item.iconName" fill="#333333" />
-                            </div>
+                          <li v-for="item in items" :key="item.name.toLowerCase()" class="flex py-2 items-center hover:bg-purple-200 active:bg-purple-200 hover:text-purple-500 px-2" :class="{ 'bg-purple-200 text-purple-500': $route.name === item.link }">
+                            <router-link 
+                              :to="item.name.toLowerCase()" class="flex py-2 items-center p-2">
 
-                            <div class="-ml-4 flex-col">
-                              <h3>
-                                <router-link
-                                  class="text-base font-semibold text-gray-500 no-underline hover:text-gray-500"
-                                  :to="item.name.toLowerCase()">{{ item.name }}</router-link>
-                              </h3>
-
-                            </div>
+                              <div class="h-full w-12 flex-shrink-0 border-gray-200">
+                                <OhVueIcon :name="item.iconName" fill="#333333" />
+                              </div>
+                              
+                              <div class="-ml-4 flex-col">
+                                <h3>
+                                  <span
+                                    class="text-base font-semibold text-gray-500 no-underline hover:text-gray-500">{{ item.name }} </span>
+                                </h3>
+                                
+                              </div>
+                            </router-link>
                           </li>
                         </ul>
                       </div>
@@ -64,18 +67,21 @@
   <div class="hidden lg:inline-block mt-12 ml-3 lg:mt-0 lg:top-12 border-neutral-700 fixed">
     <div class="flow-root">
       <ul role="list" class="my-6">
-        <li v-for="item in items" :key="item.name.toLowerCase()" class="flex py-2 items-center hover:bg-purple-200 rounded-sm transition duration-200 ease-in hover:text-purple-500 px-2">
-          <div class="h-full w-12 flex-shrink-0 border-gray-200">
-            <OhVueIcon :name="item.iconName" fill="#333333" />
-          </div>
+        <li v-for="item in items" :key="item.name.toLowerCase()" class="hover:bg-purple-200 rounded-sm transition duration-200 ease-in hover:text-purple-500" :class="{ 'bg-purple-200 text-purple-500': $route.name === item.link }">
+          <router-link 
+            :to="item.name.toLowerCase()" class="flex py-2 items-center p-2">
 
-          <div class="-ml-4 flex-col">
-            <h3>
-              <router-link class="text-base font-semibold text-gray-500 no-underline hover:text-gray-500"
-                :to="item.name.toLowerCase()">{{ item.name }}</router-link>
+            <div class="h-full w-12 flex-shrink-0 border-gray-200">
+              <OhVueIcon :name="item.iconName" fill="#333333" />
+            </div>
+            
+            <div class="-ml-4 flex-col">
+              <h3>
+                <span class="text-base font-semibold text-gray-500 no-underline hover:text-gray-500">{{ item.name }} </span>
             </h3>
-
+            
           </div>
+        </router-link>
         </li>
       </ul>
     </div>
@@ -116,11 +122,11 @@ const props = defineProps<{
 }>();
 
 const items = [
-  { iconName: "fa-regular-user-circle", name: "Profile", link: "profile" },
-  { iconName: "bi-heart", name: "Favourites", link: "favorites" },
-  { iconName: "md-deliverydining", name: "Orders", link: "orders" },
-  { iconName: "bi-bookmarks", name: "Transactions", link: "transactions" },
-  { iconName: "fc-settings", name: "Settings", link: "settings" },
+  { iconName: "fa-regular-user-circle", name: "Profile", link: "user_profile" },
+  { iconName: "bi-heart", name: "Favourites", link: "user_favourites" },
+  { iconName: "md-deliverydining", name: "Orders", link: "user_orders" },
+  { iconName: "bi-bookmarks", name: "Transactions", link: "user_transactions" },
+  { iconName: "fc-settings", name: "Settings", link: "user_settings" },
 ]
 
 

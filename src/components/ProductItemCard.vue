@@ -41,10 +41,11 @@
                     </router-link>
                     <div class="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:opacity-70" fill="none"
-                            viewBox="0 0 24 24" stroke="gray">
+                            viewBox="0 0 24 24" stroke="gray" v-if="!liked">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
+                        <HeartIcon v-else class="h-6 w-6 group-hover:opacity-70 text-purple-500" />
                     </div>
                 </div>
             </div>
@@ -107,6 +108,7 @@ import { Product } from '@/generated';
 import Toast from './Toast.vue';
 import type { RootState } from '@/store';
 import { CartActions, CartStateItem } from '@/store/constants';
+import { HeartIcon } from "@heroicons/vue/24/solid";
 
 let showToast = ref(false);
 const xtive = reactive({
@@ -114,7 +116,8 @@ const xtive = reactive({
 })
 
 const props = defineProps<{
-    product: Product
+    product: Product,
+    liked?: boolean
 }>();
 const store = useStore<RootState>();
 let timeout: number;

@@ -5,7 +5,9 @@
             <p class="text-sm font-normal text-neutral-400 mt-1">
                 {{ miniHeadText }}
             </p>
+            <slot></slot>
         </div>
+
     </main>
 </template>
 

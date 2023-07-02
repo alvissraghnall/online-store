@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/vue": "^1.7.14",
     "@heroicons/vue": "^2.0.15",
+    "@vuepic/vue-datepicker": "^5.3.0",
     "@vueuse/head": "^1.0.25",
     "@vueuse/motion": "^2.0.0-beta.12",
     "axios": "^1.4.0",

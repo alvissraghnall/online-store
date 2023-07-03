@@ -1,5 +1,5 @@
 <template>
-    <header class='w-full py-3 px-5 bg-white/25 blur-[4] border border-solid fixed z-[2] border-slate-50/20 top-0 lg:pl-40 lg:opacity-75'>
+    <header class='w-full py-3 px-5 bg-white/25 blur-[4] border border-solid z-[2] border-slate-50/20 top-0 lg:pl-40 lg:opacity-75'>
         <nav class='items-center justify-between flex'>
             <div class="justify-start flex">
                 

@@ -1,5 +1,5 @@
 <template>
-    <main class="mt-16 my-4 lg:p-3 lg:ml-40">
+    <main class="mt-3 my-4 lg:p-3 lg:ml-40">
         <div class="container mx-auto font-poppins ">
             <div class="flex justify-between mb-4">
                 <div class="max-lg:ml-3 flex items-baseline">
@@ -58,30 +58,35 @@ const orders: Order[] = [
         products: [{ quantity: 1 }],
         status: Order.status.COMPLETED,
         createdAt: new Date(2023, 6, 4, 12, 44).toISOString(),
+        date: new Date(2023, 6, 4, 12, 44).toISOString(),
         id: (Math.random() * 10000000).toFixed()
     },
     {
         products: [{ quantity: 1 }],
         status: Order.status.CANCELLED,
         createdAt: new Date(2023, 1, 4, 12, 44).toISOString(),
+        date: new Date(2023, 6, 4, 12, 44).toISOString(),
         id: (Math.random() * 10000000).toFixed()
     },
     {
         products: [{ quantity: 1 }],
         status: Order.status.PENDING,
         createdAt: new Date(2023, 4, 4, 12, 44).toISOString(),
+        date: new Date(2023, 6, 4, 12, 44).toISOString(),
         id: (Math.random() * 10000000).toFixed()
     },
     {
         products: [{ quantity: 1 }],
         status: Order.status.PROCESSING,
         createdAt: new Date(2022, 6, 10, 12, 44).toISOString(),
+        date: new Date(2023, 6, 4, 12, 44).toISOString(),
         id: (Math.random() * 10000000).toFixed()
     },
     {
         products: [{ quantity: 1 }],
         status: Order.status.COMPLETED,
         createdAt: new Date(2020, 9, 4, 12, 44).toISOString(),
+        date: new Date(2023, 6, 4, 12, 44).toISOString(),
         id: (Math.random() * 10000000).toFixed()
     },
 ];

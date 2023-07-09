@@ -1,38 +1,32 @@
 <template>
 <header ref="headerRef" class="flex h-12 bg-[#eee] px-2 sm:px-4 py-2.5 rounded border-gray-200 dark:bg-gray-900 dark:border-gray-700 items-center justify-around">
     <div class="flex items-center space-x-7">
-        <router-link to="/">
-            <span class="text-[#646cff]">
-                <!-- logo -->
-                <OhVueIcon 
-                    name="io-bag-handle-outline" 
-                    fill="#646cff"
-                    class="text-[#646cff]" 
-                />
-                <!-- <IoBagHandleOutline  /> -->
-            </span>
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                .esrup
-            </span>
-        </router-link>
+      <router-link to="/" class="flex justify-start items-center no-underline">
+        <span>
+            <ShoppingBagIcon 
+                class="text-purple-500 2xl:w-7 2xl:h-7 w-5 h-5" 
+            />
+        </span>
+        <span class='font-mono ml-0.5 self-center text-xl font-semibold whitespace-nowrap text-purple-500 lg:opacity-90'>.esrup</span>
+      </router-link>   
     </div>
 
     <nav class="hidden w-full md:block md:w-auto">
       <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <li>
-          <router-link to="/" class="block py-2 pl-3 pr-4 bg-blue-700 text-[#646cff] hover:text-[#525afc] font-semibold hover:font-bold rounded md:bg-transparent md:p-0 dark:text-white transition-all duration-200" aria-current="page">Home</router-link>
+          <router-link to="/" class="block py-2 pl-3 pr-4 bg-blue-700 text-purple-500 font-semibold hover:after:-translatex-full after:translate-x-0 after:h-1 rounded md:bg-transparent md:p-0 dark:text-white transition-all duration-200 hover:text-purple-500" aria-current="page">Home</router-link>
         </li>
         <li>
-          <router-link to="/about" class="block py-2 pl-3 pr-4 text-[#646cff] rounded font-semibold hover:font-bold hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-[#525afc]">About</router-link>
+          <router-link to="/about" class="block py-2 pl-3 pr-4 text-purple-500 rounded font-semibold hover:after:-translatex-full after:translate-x-0 after:h-1 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-purple-500">About</router-link>
         </li>
         <li>
-          <router-link to="/products" class="block py-2 pl-3 pr-4 text-[#646cff] rounded font-semibold hover:font-bold hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-[#525afc]">Services</router-link>
+          <router-link to="/products" class="block py-2 pl-3 pr-4 text-purple-500 rounded font-semibold hover:after:-translatex-full after:translate-x-0 after:h-1 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-purple-500 no-underline">Services</router-link>
         </li>
         <li>
-          <router-link to="/cart" class="block py-2 pl-3 pr-4 text-[#646cff] rounded font-semibold hover:font-bold hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-[#525afc]">Cart</router-link>
+          <router-link to="/cart" class="block py-2 pl-3 pr-4 text-purple-500 rounded font-semibold hover:after:-translatex-full after:translate-x-0 after:h-1 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-purple-500 no-underline">Cart</router-link>
         </li>
         <li>
-          <router-link to="/contact" class="block py-2 pl-3 pr-4 text-[#646cff] rounded font-semibold hover:font-bold hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-[#525afc]">Contact Us</router-link>
+          <router-link to="/contact" class="block py-2 pl-3 pr-4 text-purple-500 rounded font-semibold hover:after:-translatex-full after:translate-x-0 after:h-1 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-purple-500 no-underline ">Contact Us</router-link>
         </li>
       </ul>
     </nav>
@@ -87,6 +81,7 @@ import { StoreNames } from "@/store/store-names.enum";
 import { CartActions, CartGetters } from "@/store/constants";
 import { type RootState } from "@/store";
 // import { useRouter } from "vue-router";
+import { ShoppingBagIcon } from "@heroicons/vue/24/outline"
 
 const store = useStore<RootState>();
 let isCartOpen = ref(false);

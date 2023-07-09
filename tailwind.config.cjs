@@ -18,6 +18,11 @@ module.exports = {
         "dm_sans": ['"DM Sans"', ...defaultTheme.fontFamily.sans],
         "inter": ['Inter', ...defaultTheme.fontFamily.serif],
         "lato": ['Lato'],
+      },
+      backgroundImage: {
+        'glass': 'linear-gradient(-45deg, transparent, #ffffff40)',
+        'load': 'linear-gradient(90deg, #121214, transparent 90%)',
+        'card-glass': 'linear-gradient(200deg, rgb(29 78 216), #1c3a9c)',
       }
     },
     

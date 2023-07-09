@@ -15,9 +15,12 @@
     "noEmit": true,
     "paths": {
       "@/*": ["./src/*"], 
-      "@assets/*": ["./src/assets/*"]
+      "@assets/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"],
+      "@util/*": ["./src/util/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["node_modules", "src/util/request.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

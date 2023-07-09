@@ -1,5 +1,5 @@
 <template>
-    <header class='w-full py-3 px-5 bg-white/25 blur-[4] border border-solid z-[2] border-slate-50/20 top-0 lg:pl-40 lg:opacity-75'>
+    <header class='w-full py-3 px-5 bg-white/25 blur-[4] border border-solid z-[2] border-slate-50/20 top-0 lg:pl-40 lg:opacity-75 transition-[top] duration-300 fixed' ref="headerRef">
         <nav class='items-center justify-between flex'>
             <div class="justify-start flex">
                 
@@ -30,11 +30,25 @@
 import {OhVueIcon, addIcons} from "oh-vue-icons";
 import { IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp, HiMenuAlt4,  } from "oh-vue-icons/icons";
 import { ShoppingBagIcon } from "@heroicons/vue/24/outline"
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp, HiMenuAlt4);
 
-// const props = defineProps<{
-//     sidebar: boolean
-// }>();
+const headerRef = ref<HTMLElement | null>(null);
+
+onMounted(() => {
+    // headerRef.value?.focus();
+    const prevScrollPos = ref(window.scrollY);
+
+    window.addEventListener("scroll", () => {
+        const currScrollPos = window.scrollY;
+
+        if(prevScrollPos.value > currScrollPos) {
+            headerRef.value!.style.top = '0';
+        } else {
+            headerRef.value!.style.top = '-50px';
+        }
+        prevScrollPos.value = currScrollPos;
+    });
+})
 </script>

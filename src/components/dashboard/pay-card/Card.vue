@@ -42,7 +42,7 @@
 					</strong>
 				</p>
 
-				<img :src="chipSvg" alt="" class="rounded-md bg-card-glass" />
+				<img :src="chipSvg" alt="" class="rounded-md bg-neutral-500" />
 			</div>
 		</div>
 	</div>

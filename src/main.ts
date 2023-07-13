@@ -14,10 +14,8 @@ register();
 
 const app = createApp(App);
 
-app.component('mask-input', IMaskComponent)
+app.component('mask-input', IMaskComponent);
 app.use(store);
-app.use(router);
-app.use(HeadVuePlugin);
 app.use(MotionPlugin);
 app.use(Vue3Toasity, {
     autoClose: 3000

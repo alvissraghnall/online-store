@@ -5,7 +5,10 @@ export { default as ProductItemCard } from "./ProductItemCard.vue";
 export { default as ServicesCard } from "./ServicesCard.vue";
 export { default as ProductCard } from "./ProductCard.vue";
 export { default as CentralLayout } from "./CentralLayout.vue";
+export { default as FavouritesOverlay } from "./FavouritesOverlay.vue";
+export { default as CartOverlay } from "./CartOverlay.vue";
 export { default as ProductCardSkeleton } from "./ProductCardSkeleton.vue";
+export { default as ProductItemCardSkeleton } from "./ProductItemCardSkeleton.vue";
 export { default as Star } from "./Star.vue";
 
 export * from "./dashboard";

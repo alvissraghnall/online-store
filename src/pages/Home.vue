@@ -117,7 +117,11 @@
                 new arrivals
             </h2>
             <div class="flex flex-wrap justify-evenly">
-                <div v-for="product in newArrivals">
+                <div v-if="products === null" v-for="prod in 3">
+                    <ProductItemCardSkeleton />
+                </div>
+
+                <div v-else v-for="product in newArrivals">
                     <ProductItemCard :product="product" />
                     
                 </div>
@@ -131,7 +135,12 @@
                 popular in category
             </h2>
             <div class="flex flex-wrap justify-evenly">
-                <div v-for="product in mobiles">
+
+                <div v-if="products === null" v-for="prod in 3">
+                    <ProductItemCardSkeleton />
+                </div>
+
+                <div v-else v-for="product in mobiles">
                     <ProductItemCard :product="product" />
                 </div> 
             </div>
@@ -156,7 +165,7 @@ import { addIcons } from "oh-vue-icons";
 import { FaShippingFast, FcCustomerSupport, MdHighquality } from "oh-vue-icons/icons";
 import { GiCycle } from "oh-vue-icons/icons/gi";
 import { RiSecurePaymentLine, RiTruckLine } from "oh-vue-icons/icons/ri";
-import { ServicesCard, ProductCard, ProductItemCard, Countdown, ProductCardSkeleton } from "../components";
+import { ServicesCard, ProductCard, ProductItemCard, Countdown, ProductCardSkeleton, ProductItemCardSkeleton } from "../components";
 // import { phones } from "../assets/mock/products";
 import { services } from "../assets/mock/services";
 import { reactive, onMounted, ref } from "vue";

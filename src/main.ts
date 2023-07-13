@@ -17,6 +17,7 @@ const app = createApp(App);
 app.component('mask-input', IMaskComponent);
 app.use(store);
 app.use(MotionPlugin);
+app.use(router);
 app.use(Vue3Toasity, {
     autoClose: 3000
 } as ToastContainerOptions);

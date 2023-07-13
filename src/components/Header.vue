@@ -32,7 +32,7 @@
     </nav>
 
     <div class="flex items-center min-w-[10rem] md:min-w-[8rem] max-sm:justify-end max-md:ml-4 md:space-x-4">
-        <span class="relative cursor-pointer h-full w-full ml-1">
+        <span class="relative cursor-pointer h-full w-full ml-1" @click="isFavouritesOpen = true">
             <OhVueIcon
                 name="md-favoriteborder-sharp"
                 fill="rgb(168 85 247)"
@@ -62,6 +62,7 @@
 </header>
 
 <CartOverlay :open="isCartOpen" @close="isCartOpen = false" />
+<FavouritesOverlay :open="isFavouritesOpen" @close="isFavouritesOpen = false" />
 </template>
 
 <style scoped>
@@ -76,6 +77,7 @@ import { IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp } from "
 import { ref, VNodeRef, onMounted, onUnmounted, reactive, computed } from "vue";
 import { mapState, useStore } from "vuex";
 import CartOverlay from "./CartOverlay.vue";
+import FavouritesOverlay from "./FavouritesOverlay.vue";
 import { ignoreBaseComps } from "../util/hide-base-helper";
 import { StoreNames } from "@/store/store-names.enum";
 import { CartActions, CartGetters } from "@/store/constants";
@@ -85,6 +87,7 @@ import { ShoppingBagIcon } from "@heroicons/vue/24/outline"
 
 const store = useStore<RootState>();
 let isCartOpen = ref(false);
+let isFavouritesOpen = ref(false);
 addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp);
 
 const totalQuantity = computed(() => store.getters[`${StoreNames.CART}/${CartGetters.TOTAL_QUANTITY}`]);

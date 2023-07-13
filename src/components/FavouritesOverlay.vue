@@ -13,7 +13,7 @@
                   <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                     <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                       <div class="flex items-start justify-between">
-                        <DialogTitle class="text-lg font-semibold  text-gray-900">Cart</DialogTitle>
+                        <DialogTitle class="text-lg font-semibold  text-gray-900">Favourites</DialogTitle>
                         <div class="ml-3 flex h-7 items-center">
                           <button type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500" @click="$emit('close')">
                             <span class="sr-only">Close panel</span>
@@ -41,8 +41,9 @@
                                   <p class="mt-1 text-sm text-gray-500 capitalize">{{ item.product.category }}</p>
                                 </div>
                                 <div class="flex flex-1 items-end justify-between text-sm">
-                                  <p class="text-gray-500">Qty: {{ item.quantity }}</p>
-  
+                                  <div class="flex">
+                                    <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Add To Cart</button>
+                                  </div>
                                   <div class="flex">
                                     <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
                                   </div>
@@ -55,22 +56,11 @@
                     </div>
   
                     <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
-                      <div class="flex justify-between text-base font-medium text-gray-900">
-                        <p>Subtotal</p>
-                        <p>${{totalAmount}}</p>
-                      </div>
-                      <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                      <div class="mt-6">
-                        <router-link to="/checkout" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-white hover:text-indigo-600 hover:border-indigo-600 transition delay-10 duration-200 ease-out">Checkout</router-link>
-                      </div>
                       <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
-                        <p>
-                          or
-                          <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500" @click="$emit('close')">
+                        <router-link to="/products" class="font-medium text-indigo-600 hover:text-indigo-500" @click="$emit('close')">
                             Continue Shopping
                             <span aria-hidden="true"> &rarr;</span>
-                          </button>
-                        </p>
+                        </router-link>
                       </div>
                     </div>
                   </div>
@@ -81,54 +71,37 @@
         </div>
       </Dialog>
     </TransitionRoot>
-  </template>
+</template>
   
-  <script setup lang="ts">
+<script setup lang="ts">
   import { computed, ref, onMounted } from 'vue'
   import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
   import { XMarkIcon } from '@heroicons/vue/24/outline';
   import { useStore } from "vuex";
   import { type RootState } from '@/store';
-import { CartActions, CartGetters, CartStateItem } from '@/store/constants';
-import { StoreNames } from '@/store/store-names.enum';
-import { Product } from '@/generated';
+  import { CartActions, CartGetters, CartStateItem } from '@/store/constants';
+  import { StoreNames } from '@/store/store-names.enum';
+  import { Product } from '@/generated';
   
   const store = useStore<RootState>();
 
   const items = computed<CartStateItem[]>(() => store.getters[`${StoreNames.CART}/${CartGetters.ITEMS}`]);
   const totalAmount = computed<number>(() => store.getters[`${StoreNames.CART}/${CartGetters.TOTAL_AMOUNT}`]);
 
-  /** const products = [
-    {
-      id: 1,
-      name: 'Throwback Hip Bag',
-      href: '#',
-      color: 'Salmon',
-      price: '$90.00',
-      quantity: 1,
-      imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
-      imageAlt: 'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.',
-    },
-    {
-      id: 2,
-      name: 'Medium Stuff Satchel',
-      href: '#',
-      color: 'Blue',
-      price: '$32.00',
-      quantity: 1,
-      imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-      imageAlt:
-        'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
-    },
-    // More products...
-  ] */
-  
+   
   const props = defineProps<{
     open: boolean
   }>();
+
+  const addToCart = (item: Product) => {
+    const data: CartStateItem = { quantity: 1, product: item, productId: item.id }
+    store.dispatch(`${StoreNames.CART}/${CartActions.ADD_ITEM}`, data);
+    // alert("Product added to cart!")
+    console.log(store.getters["cart/totalQuantity"], store.getters["cart/totalAmount"]);
+  }
 
   
   onMounted(() => {
     store.dispatch(`${StoreNames.CART}/${CartActions.GET_CART}`)
   });
-  </script>
+</script>

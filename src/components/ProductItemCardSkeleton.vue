@@ -1,5 +1,5 @@
 <template>
-    <div v-motion-pop-visible class="p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 flex flex-col justify-center">
+    <div v-motion-pop-visible class="p-4 rounded animate-pulse md:p-6 flex flex-col justify-center max-w-sm min-w-[340px]">
         <div class="relative m-3 flex flex-wrap mx-auto justify-center">
 
             <div class="relative max-w-sm min-w-[340px] bg-white shadow-md rounded-3xl p-2 mx-1 my-3 cursor-pointer">
@@ -10,19 +10,21 @@
                 </div>
 
                 <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                        
 
                 <div class="mt-4 pl-2 mb-2 flex justify-between">
                     <div>
-                        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-                        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                        <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
                     </div>
-                    <div class="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
-                        
-                    </div>
+                    
                 </div>
             </div>
 
         </div>
+        <span class="sr-only">Loading...</span>
+
     </div>
 
 </template>

@@ -6,26 +6,28 @@
     </section>
 
     <section class="my-4">
-        <div class="flex mx-auto">
+        <div class="flex md:mx-auto">
             <div class="flex flex-row w-full mx-4">
-                <div class="filter-widget w-1/4">
-                    <select class="py-2 px-5 border-solid border border-cyan-900 cursor-pointer rounded-md bg-cyan-800 text-white/80 focus:outline-none" @change="handleFilter">
-                        <option class="cursor-pointer text-base capitalize" selected disabled>filter by category</option>
-                        <option class="cursor-pointer text-base" value="HEADSETS"> Headsets </option>
-                        <option class="cursor-pointer text-base" value="CHARGERS"> Chargers </option>
-                        <option class="cursor-pointer text-base" value="EARPHONES"> Earphones </option>
-                        <option class="cursor-pointer text-base" value="POWER_BANKS"> Power Banks </option>
-                        <option class="cursor-pointer text-base" value="SELFIE_STICKS"> Selfie sticks </option>
-                    </select>
+                <div class="flex justify-center flex-1 flex-col md:flex-row space-y-2">
+                    <div class="filter-widget w-1/2">
+                        <select class="py-2 px-7 cursor-pointer block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-50 focus:outline-none" @change="handleFilter">
+                            <option class="cursor-pointer text-base capitalize" selected disabled>Filter by Category</option>
+                            <option class="cursor-pointer text-base" value="HEADSETS"> Headsets </option>
+                            <option class="cursor-pointer text-base" value="CHARGERS"> Chargers </option>
+                            <option class="cursor-pointer text-base" value="EARPHONES"> Earphones </option>
+                            <option class="cursor-pointer text-base" value="POWER_BANKS"> Power Banks </option>
+                            <option class="cursor-pointer text-base" value="SELFIE_STICKS"> Selfie sticks </option>
+                        </select>
+                    </div>
+                    <div class="w-1/2 filter-widget">
+                        <select multiple class="py-2 px-5 border-solid border border-cyan-900 cursor-pointer rounded-md bg-cyan-800 text-white/80 focus:outline-none">
+                            <option class="cursor-pointer text-base" selected disabled>Sort By</option>
+                            <option class="cursor-pointer text-base" value="ASC">Ascending</option>
+                            <option class="cursor-pointer text-base" value="DESC">Descending</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="w-1/4 filter-widget">
-                    <select class="py-2 px-5 border-solid border border-cyan-900 cursor-pointer rounded-md bg-cyan-800 text-white/80 focus:outline-none">
-                        <option class="cursor-pointer text-base" selected disabled>Sort By</option>
-                        <option class="cursor-pointer text-base" value="ASC">Ascending</option>
-                        <option class="cursor-pointer text-base" value="DESC">Descending</option>
-                    </select>
-                </div>
-                <div class="w-1/2">
+                <div class="w-1/2 flex-1">
                     <div class="w-full pr-3 pl-0.5 border rounded-md border-solid border-cyan-800 flex items-center justify-between">
                         <input 
                             type="text" 

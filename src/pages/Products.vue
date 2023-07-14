@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-cover bg-gradient-to-r bg-no-repeat bg-center from-[#646cff] to-[#525afc] flex items-center justify-center py-16 md:py-24 px-0">
+    <section class="bg-cover bg-gradient-to-r bg-no-repeat bg-center from-indigo-200 to-purple-800 flex items-center justify-center py-16 md:py-24 px-0">
         <div class="flex mx-auto text-center">
             <h1 class="text-neutral-200/90 text-center font-semibold text-base md:text-lg">Products</h1>
         </div>
@@ -7,10 +7,10 @@
 
     <section class="my-4">
         <div class="flex md:mx-auto">
-            <div class="flex flex-row w-full mx-4">
-                <div class="flex justify-center flex-1 flex-col md:flex-row space-y-2">
+            <div class="flex flex-row w-full mx-4 items-center md:space-x-2">
+                <div class="flex justify-center flex-1 flex-col md:flex-row space-y-1 md:space-x-2 md:items-center">
                     <div class="filter-widget w-1/2">
-                        <select class="py-2 px-7 cursor-pointer block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-50 focus:outline-none" @change="handleFilter">
+                        <select class="py-2 px-7 cursor-pointer block w-full p-2 max-md:mb-2.5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-purple-500 focus:border-purple-50 focus:outline-none" @change="handleFilter">
                             <option class="cursor-pointer text-base capitalize" selected disabled>Filter by Category</option>
                             <option class="cursor-pointer text-base" value="HEADSETS"> Headsets </option>
                             <option class="cursor-pointer text-base" value="CHARGERS"> Chargers </option>
@@ -20,15 +20,15 @@
                         </select>
                     </div>
                     <div class="w-1/2 filter-widget">
-                        <select multiple class="py-2 px-5 border-solid border border-cyan-900 cursor-pointer rounded-md bg-cyan-800 text-white/80 focus:outline-none">
+                        <select class="py-2 px-7 cursor-pointer block w-full p-2 max-md:mb-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-purple-500 focus:border-purple-50 focus:outline-none" @change="handleSort">
                             <option class="cursor-pointer text-base" selected disabled>Sort By</option>
-                            <option class="cursor-pointer text-base" value="ASC">Ascending</option>
-                            <option class="cursor-pointer text-base" value="DESC">Descending</option>
+                            <option class="cursor-pointer text-base" value="ASC">Price (ASC)</option>
+                            <option class="cursor-pointer text-base" value="DESC">Price (DESC)</option>
                         </select>
                     </div>
                 </div>
                 <div class="w-1/2 flex-1">
-                    <div class="w-full pr-3 pl-0.5 border rounded-md border-solid border-cyan-800 flex items-center justify-between">
+                    <div class="w-full pr-3 pl-0.5 border rounded-md border-solid border-purple-500 flex items-center justify-between">
                         <input 
                             type="text" 
                             placeholder="Search..." 
@@ -38,7 +38,7 @@
                         <span class="text-sky-800">
                             <OhVueIcon
                                 name="ri-search-line"
-
+                                fill="rgb(168 85 247)"
                             />
                         </span>
                     </div>
@@ -98,6 +98,18 @@ const handleFilter = (ev: Event) => {
     console.log(productsData.value);
     console.log(filterValue);
     
+}
+
+const handleSort = (ev: Event) => {
+    const sortValue = (ev.target as HTMLSelectElement).value;
+    
+    if (sortValue === 'ASC') {
+        productsData.value.sort(
+            (a, b) => a.price - b.price
+        )
+    } else {
+        productsData.value.sort((a,b) => b.price - a.price);
+    }
 }
 
 const handleSearch = (ev: Event) => {

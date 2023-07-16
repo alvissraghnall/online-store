@@ -2,6 +2,7 @@ import { createStore } from 'vuex';
 // import { auth, type AuthState } from "./modules/auth.module";
 import { cart, auth, type AuthState } from "./modules";
 import { CartState } from './constants';
+export * from "./store-names.enum";
 // import { StoreState } from '../models/state/app-state.state';
 
 export type RootState = {

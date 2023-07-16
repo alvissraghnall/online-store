@@ -23,6 +23,7 @@
     "vee-validate": "^4.9.6",
     "vue": "^3.2.45",
     "vue-imask": "6.4.3",
+    "vue-paystack": "^2.0.4",
     "vue-router": "4",
     "vue3-toastify": "^0.1.11",
     "vuex": "^4.0.2",

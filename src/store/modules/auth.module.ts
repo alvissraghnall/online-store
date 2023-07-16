@@ -3,6 +3,7 @@ import { AuthControllerService, NewUser } from "../../generated";
 import type { Module } from "vuex";
 import router from "@/router";
 import { toast, type ToastOptions } from "vue3-toastify";
+import { AuthActions, AuthMutations } from "../constants";
 
 export type AuthState = {
     status: {
@@ -32,13 +33,13 @@ export const auth: Module<AuthState, any> = {
     namespaced: true,
     state: initialState,
     actions: {
-        async login({ commit }, user: LoginUserCredentials) {
+        async [AuthActions.LOGIN] ({ commit }, user: LoginUserCredentials) {
             return AuthControllerService.authControllerSignIn(
                 user
             ).then(
                 response => {
                     console.log(response);
-                    commit('loginSuccess', user.email);
+                    commit(AuthMutations.LOGIN_SUCCESS, user.email);
                     toast.success("Login successful!", {
                         autoClose: 4300,
                         hideProgressBar: false,
@@ -55,7 +56,7 @@ export const auth: Module<AuthState, any> = {
             ).catch (
                 error => {
                     console.log(error.body, error.request);
-                    commit('loginFailure', error.message);
+                    commit(AuthMutations.LOGIN_FAILURE, error.message);
                     toast.error(error.body?.error?.message, {
                         autoClose: 9000,
                         hideProgressBar: false,
@@ -65,17 +66,17 @@ export const auth: Module<AuthState, any> = {
                 }
             );
         },
-        logout({ commit }) {
+        [AuthActions.LOGOUT] ({ commit }) {
             localStorage.removeItem("JWT_TOKEN");
             localStorage.removeItem('user');
-            commit('logout');
+            commit(AuthMutations.LOGOUT);
 
             router.push({ name: 'login' });
         },
-        async register({ commit }, user: NewUser) {
+        async [AuthActions.REGISTER] ({ commit }, user: NewUser) {
             return AuthControllerService.authControllerCreate(user).then(
                 response => {
-                    commit('registerSuccess');
+                    commit(AuthMutations.REGISTER_SUCCESS);
                     toast.success("Registration successful!", {
                         autoClose: 4300,
                         hideProgressBar: false,
@@ -88,7 +89,7 @@ export const auth: Module<AuthState, any> = {
                     return Promise.resolve(user);
                 },
                 error => {
-                    commit('registerFailure');
+                    commit(AuthMutations.REGISTER_FAILURE);
                     toast.error(error.body?.error?.message, {
                         autoClose: 7700,
                         hideProgressBar: false,
@@ -100,25 +101,28 @@ export const auth: Module<AuthState, any> = {
         }
     },
     mutations: {
-        loginSuccess(state: AuthState, user: NewUser) {
+        [AuthMutations.LOGIN_SUCCESS] (state: AuthState, user: NewUser) {
             state.status.loggedIn = true;
             state.status.loginError = null;
             state.user = user.email;
         },
-        loginFailure(state: AuthState, payload: string) {
+        [AuthMutations.LOGIN_FAILURE] (state: AuthState, payload: string) {
             state.status.loggedIn = false;
             state.status.loginError = payload;
             state.user = null;
         },
-        logout(state: AuthState) {
+        [AuthMutations.LOGOUT] (state: AuthState) {
             state.status.loggedIn = false;
             state.user = null;
         },
-        registerSuccess(state: AuthState) {
+        [AuthMutations.REGISTER_SUCCESS] (state: AuthState) {
             state.status.loggedIn = false;
         },
-        registerFailure(state: AuthState) {
+        [AuthMutations.REGISTER_FAILURE] (state: AuthState) {
             state.status.loggedIn = false;
         }
+    },
+    getters: {
+        
     }
 };

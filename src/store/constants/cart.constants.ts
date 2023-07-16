@@ -9,6 +9,7 @@ export enum CartMutations {
     ADD_ITEM = 'ADD_ITEM',
     GET_CART_FALLBACK = 'GET_CART_FALLBACK',
     ADD_ITEM_FALLBACK = 'ADD_ITEM_FALLBACK',
+    REMOVE_ITEM = 'REMOVE_ITEM'
 }
 
 export enum CartActions {

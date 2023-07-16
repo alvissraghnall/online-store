@@ -2,8 +2,8 @@ import type { Module } from "vuex";
 // import { Product } from '../models/Product.model';
 import router from "@/router";
 import { CartControllerService, type Cart, type Product, CartItem } from "@/generated";
-import { CartActions, CartGetters, CartMutations, CartState, CartStateItem } from "../constants";
-import { RootState } from "..";
+import { AuthActions, CartActions, CartGetters, CartMutations, CartState, CartStateItem } from "../constants";
+import { RootState, StoreNames } from "..";
 import { toast } from "vue3-toastify";
 
 export const cart: Module<CartState, RootState> = {
@@ -56,9 +56,32 @@ export const cart: Module<CartState, RootState> = {
                 )
         },
         [CartActions.REMOVE_ITEM] ({ commit, state, rootState }, payload: CartItem) {
-            // CartControllerService.cart(
-            //     payload.
-            // )
+            CartControllerService.cartControllerRemoveItem(
+                payload.productId ?? '0'
+            ).then(
+                response => {
+                    commit(CartMutations.REMOVE_ITEM, payload);
+                    toast.info(
+                        "Item removed from cart!", {
+                            autoClose: 3400,
+                            pauseOnHover: false
+                        }
+                    );
+                }
+            ).catch(
+                error => {
+                    if(error.body?.error.statusCode === 401) {
+                        this.dispatch(`${StoreNames.AUTH}/${AuthActions.LOGOUT}`);
+                    } else if (error.body?.error.statusCode === 500) {
+                        toast.error(
+                            "Something went terribly wrong!", {
+                                autoClose: 3400,
+                                pauseOnHover: false
+                            }
+                        );
+                    }
+                }
+            )
         }
     },
     mutations: {

@@ -68,7 +68,9 @@ export const favourites: Module<Record<"items", FavouriteStateItem[]>, RootState
             if(!existingItem) {
                 state.items?.push({
                     ...payload
-                })
+                });
+            } else {
+                state.items = state.items.filter(item => item.id !== payload.id);
             }
             console.log(state.items);
             return;

@@ -2,7 +2,7 @@ import {
     Home,
     ProductDetails,
     Products,
-    Cart,
+    MakeOrder,
     Checkout,
     Signin,
     Signup,
@@ -35,9 +35,9 @@ export const routes: RouteRecordRaw[] = [
         }
     },
     {
-        path: "/cart",
-        name: "cart",
-        component: Cart,
+        path: "/make-order",
+        name: "make-order",
+        component: MakeOrder,
         meta: {
             transition: "slide-right"
         }

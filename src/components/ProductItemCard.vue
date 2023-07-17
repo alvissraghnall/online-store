@@ -106,7 +106,7 @@ import { ref, reactive } from 'vue';
 import { useStore } from 'vuex';
 import { Product } from '@/generated';
 import Toast from './Toast.vue';
-import type { RootState } from '@/store';
+import { RootState, StoreNames } from '@/store';
 import { CartActions, CartStateItem } from '@/store/constants';
 import { HeartIcon } from "@heroicons/vue/24/solid";
 
@@ -121,13 +121,11 @@ const props = defineProps<{
 }>();
 const store = useStore<RootState>();
 let timeout: number;
-// store.dispatch()
+
 const addToCart = () => {
     const data: CartStateItem = { quantity: 1, product: props.product, productId: props.product.id }
-    store.dispatch(`cart/${CartActions.ADD_ITEM}`, data);
-    // alert("Product added to cart!")
+    store.dispatch(`${StoreNames.CART}/${CartActions.ADD_ITEM}`, data);
     console.log(store.getters["cart/totalQuantity"], store.getters["cart/totalAmount"]);
-    
 }
 
 const transformCld = (lnk: string) => {

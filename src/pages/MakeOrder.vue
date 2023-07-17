@@ -93,11 +93,16 @@ const store = useStore<RootState>();
 const items = computed<CartStateItem[]>(() => store.getters[`${StoreNames.CART}/${CartGetters.ITEMS}`]);
 const totalAmount = computed<number>(() => store.getters[`${StoreNames.CART}/${CartGetters.TOTAL_AMOUNT}`]);
 
-const incrementQuantity = () => {
+// const incrementQuantity = (item: CartStateItem) => {
+//   store.dispatch(`${StoreNames.CART}/${CartActions.ADD_ITEM}`, { quantity: 1, product: item.product, productId: item.product.id });
+// }
 
-}
+/* TODO: Implement this ! */
+// const decrementQuantity = (item: CartStateItem) => {
+//   store.dispatch(`${StoreNames.CART}/${CartActions.ADD_ITEM}`, { quantity: -1, product: item.product, productId: item.product.id });
+// }
 
 onMounted(() => {
-  store.dispatch(`${StoreNames.CART}/${CartActions.GET_CART}`)
+  store.dispatch(`${StoreNames.CART}/${CartActions.GET_CART}`);
 });
 </script>

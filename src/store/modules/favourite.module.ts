@@ -35,8 +35,13 @@ export const favourites: Module<Record<"items", FavouriteStateItem[]>, RootState
                     error => {
                         if(error.body?.error.statusCode === 401) {
                             this.dispatch(`${StoreNames.AUTH}/${AuthActions.LOGOUT}`);
-                        } else {
-
+                        } else if (error.body?.error.statusCode === 500) {
+                            toast.error(
+                                "Something went wrong!", {
+                                    autoClose: 3400,
+                                    pauseOnHover: false
+                                }
+                            );
                         }
                     }
                 )

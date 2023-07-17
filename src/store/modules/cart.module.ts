@@ -72,6 +72,13 @@ export const cart: Module<CartState, RootState> = {
                 error => {
                     if(error.body?.error.statusCode === 401) {
                         this.dispatch(`${StoreNames.AUTH}/${AuthActions.LOGOUT}`);
+                    } else if (error.body.error.statusCode === 404) {
+                        toast.error(
+                            "Item does not exist on cart!", {
+                                autoClose: 3400,
+                                pauseOnHover: false
+                            }
+                        );
                     } else if (error.body?.error.statusCode === 500) {
                         toast.error(
                             "Something went terribly wrong!", {
@@ -100,6 +107,12 @@ export const cart: Module<CartState, RootState> = {
             }
 
             console.log(state.items);
+        },
+        [CartMutations.REMOVE_ITEM] (state, payload: CartItem) {
+            const itemIndex = state.items?.findIndex((item) => item.productId === payload.product?.id);
+            if (itemIndex !== undefined && itemIndex >= 0 ) {
+                state.items?.splice(itemIndex, 1);
+            }
         },
         [CartMutations.GET_CART] (state, payload: Cart) {
             state.items = payload.items;

@@ -1,33 +1,41 @@
-import { AuthControllerService, NewUser } from "../../generated";
+import { AuthControllerService, NewUser, User } from "../../generated";
 // import type { NewUser } from '../generated/models/NewUser';
 import type { Module } from "vuex";
 import router from "@/router";
 import { toast, type ToastOptions } from "vue3-toastify";
-import { AuthActions, AuthMutations } from "../constants";
+import { AuthActions, AuthGetters, AuthMutations } from "../constants";
 
 export type AuthState = {
     status: {
         loggedIn: boolean,
         loginError: string | null
     },
-    user: string | null
+    user: Partial<User> | User | null
 }
 
 type LoginUserCredentials = Pick<Required<NewUser>, "email" | "password">;
 
 // const router = useRouter();
-const user = localStorage.getItem('user');
+const userMail = localStorage.getItem('user');
 
-const initialState = user
+const initialState = userMail
     ? 
-        { status: { 
-            loggedIn: true, 
-            loginError: null 
-        }, user }
-    : { status: { 
-        loggedIn: false, 
-        loginError: "" 
-    }, user: null };
+        { 
+            status: { 
+                loggedIn: true, 
+                loginError: null 
+            }, user: {
+                email: userMail,
+
+            } 
+        }
+    :   { 
+        status: { 
+            loggedIn: false, 
+            loginError: "" 
+        }, 
+        user: null 
+    };
 
 export const auth: Module<AuthState, any> = {
     namespaced: true,
@@ -98,13 +106,27 @@ export const auth: Module<AuthState, any> = {
                     return Promise.reject(error);
                 }
             );
+        },
+        async [AuthActions.GET_CURR_USER] ({ commit }) {
+            return AuthControllerService.authControllerWhoAmI()
+                .then(
+                    response => {
+                        commit(AuthMutations.GET_CURR_USER, response);
+                        return Promise.resolve(response);
+                    }
+                ).catch(
+                    error => {
+                        commit(AuthMutations.GET_CURR_USER_FALLBACK, error);
+                        return Promise.reject(error);
+                    }
+                )
         }
     },
     mutations: {
         [AuthMutations.LOGIN_SUCCESS] (state: AuthState, user: NewUser) {
             state.status.loggedIn = true;
             state.status.loginError = null;
-            state.user = user.email;
+            state.user = user;
         },
         [AuthMutations.LOGIN_FAILURE] (state: AuthState, payload: string) {
             state.status.loggedIn = false;
@@ -120,9 +142,21 @@ export const auth: Module<AuthState, any> = {
         },
         [AuthMutations.REGISTER_FAILURE] (state: AuthState) {
             state.status.loggedIn = false;
+        },
+        [AuthMutations.GET_CURR_USER] (state, payload: User) {
+            state.status.loginError = null;
+            state.status.loggedIn = true;
+            state.user = payload;
+        },
+        [AuthMutations.GET_CURR_USER_FALLBACK] (state, payload: Error) {
+            state.status.loggedIn = false;
+            state.status.loginError = payload.message;
+            state.user = null;
         }
     },
     getters: {
-        
+        [AuthGetters.IS_LOGGED_IN]: state => state.status.loggedIn,
+        [AuthGetters.LOGIN_ERROR]: state => state.status.loginError,
+        [AuthGetters.CURRENT_USER]: state => state.user
     }
 };

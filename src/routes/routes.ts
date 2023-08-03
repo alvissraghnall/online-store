@@ -11,6 +11,10 @@ import {
 import { type RouteRecordRaw } from "vue-router";
 import { userRoutes } from "./user.route";
 import { UserLayout } from "@/components/dashboard";
+import { useStore } from "vuex";
+import { AuthActions } from "@/store/constants";
+import { AuthState } from "@/store/modules";
+import { RootState, StoreNames } from "@/store";
 
 export const routes: RouteRecordRaw[] = [
     {
@@ -37,6 +41,16 @@ export const routes: RouteRecordRaw[] = [
     {
         path: "/make-order",
         name: "make-order",
+        beforeEnter: async (to, from, next) => {
+            const store = useStore<RootState>();
+            const currUser = await store.dispatch(`${StoreNames.AUTH}/${AuthActions.GET_CURR_USER}`);
+            if (
+                !currUser
+                && to.name !== "signin"
+            ) {
+                return { name: "signin" };
+            }
+        },
         component: MakeOrder,
         meta: {
             transition: "slide-right"

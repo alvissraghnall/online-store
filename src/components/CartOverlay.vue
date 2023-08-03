@@ -61,7 +61,12 @@
                       </div>
                       <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div class="mt-6" @click="$emit('close')">
-                        <router-link to="/make-order" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-white hover:text-indigo-600 hover:border-indigo-600 transition delay-10 duration-200 ease-out">Make Order</router-link>
+                        <router-link 
+                          to="/make-order" 
+                          class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-white hover:text-indigo-600 hover:border-indigo-600 transition delay-10 duration-200 ease-out"
+                        >
+                          Make Order
+                        </router-link>
                       </div>
                       <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>

@@ -1,12 +1,14 @@
 <template>
-    <intro-head mini-head-text="Edit the information associated with your account."
-        head-text="Your Personal Details">
+    <intro-head 
+        mini-head-text="Edit the information associated with your account."
+        head-text="Your Personal Details"
+    >
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-4">
             <div class="col-span-12 lg:col-span-7 space-y-3">
                 <!-- <h6 class="font-semibold text-base font-dm_sans">About You</h6> -->
                 <!-- <p class="text-slate-500 text-sm">This information is associated with your account.</p> -->
 
-                <form class="mt-5">
+                <form class="mt-5" @submit.prevent="handleSubmit">
                     <label class="flex flex-col gap-2 mb-4 mt-7">
                         <p class="text-sm text-neutral-500 uppercase">Address</p>
 
@@ -15,6 +17,7 @@
                             placeholder=""
                             name="address"
                             type="text"
+                            v-model="user.address"
                         />
                     </label>
 
@@ -26,6 +29,7 @@
                             placeholder="Alves"
                             name="firstName"
                             type="text"
+                            v-model="user.firstName"
                         />
                     </label>
 
@@ -37,6 +41,7 @@
                             placeholder="Spandex"
                             name="lastName"
                             type="text"
+                            v-model="user.lastName"
                         />
                     </label>
                     
@@ -67,6 +72,7 @@
                             placeholder="+1 430 3902"
                             name="phone"
                             type="text"
+                            v-model="user.phone"
                         />
                     </label>
 
@@ -78,6 +84,7 @@
                             placeholder="alvessspandex@gmail.com"
                             name="email"
                             type="email"
+                            v-model="user.email"
                         />
                     </label>
 
@@ -85,7 +92,9 @@
                         <div class="relative z-0 w-full mb-6 group">
                             <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer shadow-sm"
-                                placeholder=" " required />
+                                placeholder=""
+                                required
+                            />
                             <label for="floating_phone"
                                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone
                                 number (123-456-7890)</label>
@@ -126,12 +135,38 @@
 
 <script setup lang="ts">
 
-import { onUnmounted } from 'vue'
+import { onUnmounted, onMounted } from 'vue'
 import { timeouts } from '@util/card-brands'
-// import { IntroHead } from "@/components";
 import { Form as PayCardForm, Card as PayCardCard, IntroHead } from "@/components";
+import { User } from '@/generated';
+import { type RootState, StoreNames } from '@/store';
+import { AuthGetters, AuthActions } from '@/store/constants';
+import { toast } from 'vue3-toastify';
+import { useStore } from 'vuex';
 
 onUnmounted(() => {
     timeouts.forEach(clearTimeout)
 });
+
+const handleSubmit = (ev: Event) => {
+    console.log(user);
+};
+
+const store = useStore<RootState>();
+const user: User = store.getters[`${StoreNames.AUTH}/${AuthGetters.CURRENT_USER}`];
+
+const getUserDetails = async () => {
+    let currUser: User;
+    try {
+        await store.dispatch(`${StoreNames.AUTH}/${AuthActions.GET_CURR_USER}`);
+    } catch (err) {
+        let error = err as Error;
+        toast.error(error.message, {
+            autoClose: 6400,
+            pauseOnHover: true
+        });
+    }
+}
+
+onMounted(getUserDetails);
 </script>

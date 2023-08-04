@@ -91,12 +91,6 @@ let isFavouritesOpen = ref(false);
 addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp);
 
 const totalQuantity = computed(() => store.getters[`${StoreNames.CART}/${CartGetters.TOTAL_QUANTITY}`]);
-// ref(useStore().getters.totalQuantity);
-// const re = reactive({
-//   totalQuantity
-// })
-
-// const tQ = $store.getters.totalQuantity;
 
 let headerRef = ref<HTMLElement | null>(null);
 

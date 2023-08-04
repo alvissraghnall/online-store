@@ -12,7 +12,7 @@ export const favourites: Module<Record<"items", FavouriteStateItem[]>, RootState
         items: [],
     },
     actions: {
-        [FavouriteActions.ADD_ITEM] ({ commit, state, rootState }, payload: Required<FavouriteStateItem> & Partial<FavouriteStateItem>) {
+        [FavouriteActions.TOGGLE_ITEM] ({ commit, state, rootState }, payload: Required<FavouriteStateItem> & Partial<FavouriteStateItem>) {
             if (!rootState.auth.status.loggedIn) {
                 router.push({ name: 'signin' });
             } else {
@@ -23,7 +23,7 @@ export const favourites: Module<Record<"items", FavouriteStateItem[]>, RootState
                     data
                 ).then(
                     response => {
-                        commit(FavouriteMutations.ADD_ITEM, payload);
+                        commit(FavouriteMutations.TOGGLE_ITEM, payload);
                         toast.success(
                             "Item added to favourites!", {
                                 autoClose: 3400,
@@ -59,14 +59,10 @@ export const favourites: Module<Record<"items", FavouriteStateItem[]>, RootState
                     }
                 )
         },
-        [FavouriteActions.REMOVE_ITEM] ({ commit, state, rootState }, payload: FavouriteStateItem) {
-            // FavouritesControllerService.favourites(
-            //     payload.
-            // )
-        }
+        
     },
     mutations: {
-        [FavouriteMutations.ADD_ITEM] (state, payload: FavouriteStateItem) {
+        [FavouriteMutations.TOGGLE_ITEM] (state, payload: FavouriteStateItem) {
             // const { description, category, rating, ...prod } = payload;
             const existingItem = state.items?.find(item => item.id === payload.id);
 
@@ -87,7 +83,7 @@ export const favourites: Module<Record<"items", FavouriteStateItem[]>, RootState
         [FavouriteMutations.GET_FAVOURITES_FALLBACK] (state) {
             state.items = [];
         },
-        [FavouriteMutations.ADD_ITEM_FALLBACK] (state) {}
+        [FavouriteMutations.TOGGLE_ITEM_FALLBACK] (state) {}
     },
     getters: {
         // [FavouriteGetters.TOTAL_AMOUNT]: state => state.items?.reduce(

@@ -36,15 +36,39 @@
     import {
         CoMinutemailer, GiRotaryPhone, GiGlobe, FaUserAlt
     } from "oh-vue-icons/icons";
+    import { type RootState, StoreNames } from "@/store";
+    import { onMounted, ref, computed } from "vue";
+    import { type User } from "@/generated";
+    import { AuthActions, AuthGetters } from "@/store/constants";
+    import { toast } from "vue3-toastify";
+    import { useStore } from "vuex";
+    
 
     addIcons(
         CoMinutemailer, GiRotaryPhone, GiGlobe, FaUserAlt
     );
-
+    
+    const store = useStore<RootState>();
+    const user: User = store.getters[`${StoreNames.AUTH}/${AuthGetters.CURRENT_USER}`];
     const data = [
-        { field: "name", value: "Astar Gomez", icon: "fa-user-alt" },
-        { field: "email", value: "astargomez@yahoo.co.uk", icon: "co-minutemailer" },
-        { field: "phone", value: "+1303842", icon: "gi-rotary-phone" },
+        { field: "name", value: user.firstName + " " + user.lastName, icon: "fa-user-alt" },
+        { field: "email", value: user.email, icon: "co-minutemailer" },
+        { field: "phone", value: user.phone, icon: "gi-rotary-phone" },
         { field: "country, region", value: "israel, tbilisi", icon: "gi-globe" },
-    ]
+    ];
+
+    const getUserDetails = async () => {
+        let currUser: User;
+        try {
+            await store.dispatch(`${StoreNames.AUTH}/${AuthActions.GET_CURR_USER}`);
+        } catch (err) {
+            let error = err as Error;
+            toast.error(error.message, {
+                autoClose: 6400,
+                pauseOnHover: true
+            });
+        }
+    }
+
+    onMounted(getUserDetails);
 </script>

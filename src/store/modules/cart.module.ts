@@ -35,7 +35,7 @@ export const cart: Module<CartState, RootState> = {
                 ).catch(
                     error => {
                         if(error.body?.error.statusCode === 401) {
-                            this.dispatch("auth/logout");
+                            this.dispatch(`${StoreNames.AUTH}/${AuthActions.LOGOUT}`);
                         } else {
 
                         }

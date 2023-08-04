@@ -36,7 +36,7 @@
                 </div>
                 <div class="mt-4 pl-2 mb-2 flex justify-between ">
                     <router-link :to="'/products/' + product.id">
-                        <p class="text-lg font-semibold text-gray-900 mb-0">{{product.name}}</p>
+                        <p class="text-lg font-semibold text-gray-900 mb-0">{{product.name.length < 29 ? product.name : product.name.slice(0, 29).concat("...")}}</p>
                         <p class="text-lg text-gray-900 mt-0 font-mono font-medium">${{product.price}}</p>
                     </router-link>
                     <div class="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">

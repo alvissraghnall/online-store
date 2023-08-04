@@ -4,15 +4,15 @@ export type FavouriteStateItem = Product;
 
 export enum FavouriteMutations {
     GET_FAVOURITES = 'GET_FAVOURITES',
-    ADD_ITEM = 'ADD_ITEM',
+    TOGGLE_ITEM = 'TOGGLE_ITEM',
     GET_FAVOURITES_FALLBACK = 'GET_FAVOURITES_FALLBACK',
-    ADD_ITEM_FALLBACK = 'ADD_ITEM_FALLBACK',
+    TOGGLE_ITEM_FALLBACK = 'TOGGLE_ITEM_FALLBACK',
 }
 
 export enum FavouriteActions {
-    ADD_ITEM = 'addItem',
+    TOGGLE_ITEM = 'toggleItem',
     GET_FAVOURITES = 'getFavourites',
-    REMOVE_ITEM = "removeItem",
+    // REMOVE_ITEM = "removeItem",
 }
 
 export enum FavouriteGetters {

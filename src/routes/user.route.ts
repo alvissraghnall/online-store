@@ -7,9 +7,15 @@ export enum UserRoutes {
     USER_ORDERS = "user_orders",
     USER_SETTINGS = "user_settings",
     USER_FAVOURITES = "user_favourites",
+    USER_LAYOUT = "user_layout"
 }
 
 export const userRoutes: RouteRecordRaw[] = [
+    {
+        name: UserRoutes.USER_LAYOUT,
+        path: "",
+        redirect: {name: UserRoutes.USER_PROFILE}
+    },
     {
         name: UserRoutes.USER_PROFILE,
         path: "profile",

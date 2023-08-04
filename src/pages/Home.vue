@@ -65,9 +65,11 @@
                 },
                 768: {
                     slidesPerView: 3,
+                    spaceBetween: 3
                 },
                 1160: {
-                    slidesPerView: 4
+                    slidesPerView: 4,
+                    spaceBetween: 3
                 }
             }"
             :speed="500"

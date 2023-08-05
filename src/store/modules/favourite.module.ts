@@ -1,7 +1,7 @@
 import type { Module } from "vuex";
 // import { Product } from '../models/Product.model';
 import router from "@/router";
-import { FavouritesControllerService, type Product, } from "@/generated";
+import { FavouritesControllerService, User, type Product, } from "@/generated";
 import { AuthActions, FavouriteActions, FavouriteGetters, FavouriteMutations, FavouriteStateItem } from "../constants";
 import { RootState, StoreNames } from "..";
 import { toast } from "vue3-toastify";
@@ -22,14 +22,18 @@ export const favourites: Module<Record<"items", FavouriteStateItem[]>, RootState
                 FavouritesControllerService.favouritesControllerAdd(
                     data
                 ).then(
-                    response => {
+                    res => {
+                        let response = res as User & { favourites: Product[] };
                         commit(FavouriteMutations.TOGGLE_ITEM, payload);
-                        toast.success(
+                        response.favourites.findIndex(prod => prod.id === data.productId) > 0 ? toast.success(
                             "Item added to favourites!", {
                                 autoClose: 3400,
                                 pauseOnHover: false
                             }
-                        );
+                        ) : toast.error("Item removed from favourites!", {
+                            autoClose: 3600,
+                            pauseOnHover: false
+                        });
                     }
                 ).catch(
                     error => {
@@ -86,12 +90,6 @@ export const favourites: Module<Record<"items", FavouriteStateItem[]>, RootState
         [FavouriteMutations.TOGGLE_ITEM_FALLBACK] (state) {}
     },
     getters: {
-        // [FavouriteGetters.TOTAL_AMOUNT]: state => state.items?.reduce(
-        //     (acc, curr) => acc + (curr.product?.price ?? 0) * curr.quantity, 0
-        // ),
-        // [FavouriteGetters.TOTAL_QUANTITY]: state => state.items?.reduce(
-        //     (acc, favouritesItem) => acc + favouritesItem.quantity, 0
-        // ),
         [FavouriteGetters.ITEMS]: state => state.items,
     }
 }

@@ -59,6 +59,15 @@ import { IntroHead } from "@/components";
 import { StarIcon, HeartIcon } from "@heroicons/vue/24/solid";
 import { StarIcon as StarOutlineIcon } from "@heroicons/vue/24/outline";
 import { ProductItemCard } from "@/components";
+import { type RootState, FavouriteStateItem, StoreNames, FavouriteGetters } from "@/store";
+import { useStore } from "vuex";
+
+const store = useStore<RootState>();
+const favourites: FavouriteStateItem[] = store.getters[`${StoreNames.FAVOURITE}/${FavouriteGetters.ITEMS}`];
+
+const toggleFavourite = (item: Product) => {
+
+}
 
 const products = [
     {

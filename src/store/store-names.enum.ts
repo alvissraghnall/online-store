@@ -1,4 +1,6 @@
 export enum StoreNames {
     AUTH = 'auth',
-    CART = 'cart'
+    CART = 'cart',
+    FAVOURITE = 'favourite',
+    ORDER = 'order'
 } 

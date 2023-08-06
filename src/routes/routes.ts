@@ -6,7 +6,8 @@ import {
     Checkout,
     Signin,
     Signup,
-    NotFound
+    NotFound,
+    PaymentSuccess
 } from "../pages";
 import { type RouteRecordRaw } from "vue-router";
 import { userRoutes } from "./user.route";
@@ -80,6 +81,16 @@ export const routes: RouteRecordRaw[] = [
         children: userRoutes,
         // beforeEnter: 
     }, 
+    {
+        
+        path: "/payment-success",
+        name: "payment-success,",
+        component: PaymentSuccess,
+        meta: {
+            transition: "slide-up",
+            requiresAuth: true
+        },
+    },
     {
         path: "/signup",
         name: "signup",

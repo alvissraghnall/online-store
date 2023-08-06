@@ -135,7 +135,7 @@
 
 <script setup lang="ts">
 
-import { onUnmounted, onMounted } from 'vue'
+import { onUnmounted, onMounted, reactive } from 'vue'
 import { timeouts } from '@util/card-brands'
 import { Form as PayCardForm, Card as PayCardCard, IntroHead } from "@/components";
 import { User } from '@/generated';
@@ -143,10 +143,15 @@ import { type RootState, StoreNames } from '@/store';
 import { AuthGetters, AuthActions } from '@/store/constants';
 import { toast } from 'vue3-toastify';
 import { useStore } from 'vuex';
+// import { ownerName, cardNumber, expiration, cvv } from '@util/card-brands';
 
 onUnmounted(() => {
     timeouts.forEach(clearTimeout)
 });
+
+// const cardDetails = reactive({
+//     ownerName, cardNumber, expiration, cvv
+// });
 
 const handleSubmit = (ev: Event) => {
     console.log(user);

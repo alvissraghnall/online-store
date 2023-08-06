@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { routes } from '@/routes';
 import store, { StoreNames } from "@/store";
 import { ApiError } from "@/generated";
-import { AuthActions } from "@/store/constants";
+import { AuthActions, AuthGetters } from "@/store/constants";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -20,7 +20,7 @@ router.beforeEach(async (to, from, next) => {
                 }
             });
 
-        if (currUser) {
+        if (currUser && store.getters[`${StoreNames.AUTH}/${AuthGetters.IS_LOGGED_IN}`]) {
             next();
         }
         else next({ name: "signin"});

@@ -3,7 +3,7 @@
         mini-head-text="Find your saved items and get ready to order them."
     >
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            <div class="gap-3 rounded-md relative m-3 mx-auto" v-for="product in products">
+            <div class="gap-3 rounded-md relative m-3 mx-auto" v-for="product in favourites">
                 <!-- <div class="min-w-[340px] flex flex-col group">
                     <div
                     class="h-48 md:h-56 lg:h-[24rem] w-full bg-red-500 border-2 border-white flex items-center justify-center text-white text-base mb-3 md:mb-5 overflow-hidden relative">
@@ -56,18 +56,13 @@
 
 <script setup lang="ts">
 import { IntroHead } from "@/components";
-import { StarIcon, HeartIcon } from "@heroicons/vue/24/solid";
-import { StarIcon as StarOutlineIcon } from "@heroicons/vue/24/outline";
 import { ProductItemCard } from "@/components";
-import { type RootState, FavouriteStateItem, StoreNames, FavouriteGetters } from "@/store";
+import { type RootState, FavouriteStateItem, StoreNames, FavouriteGetters, FavouriteActions } from "@/store";
 import { useStore } from "vuex";
+import { computed } from "vue";
 
 const store = useStore<RootState>();
-const favourites: FavouriteStateItem[] = store.getters[`${StoreNames.FAVOURITE}/${FavouriteGetters.ITEMS}`];
-
-const toggleFavourite = (item: Product) => {
-
-}
+const favourites = computed<FavouriteStateItem[]>(() => store.getters[`${StoreNames.FAVOURITE}/${FavouriteGetters.ITEMS}`]);
 
 const products = [
     {

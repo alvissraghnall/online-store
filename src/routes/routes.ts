@@ -12,7 +12,7 @@ import { type RouteRecordRaw } from "vue-router";
 import { userRoutes } from "./user.route";
 import { UserLayout } from "@/components/dashboard";
 import store from "@/store";
-import { AuthActions } from "@/store/constants";
+import { AuthActions, AuthGetters } from "@/store/constants";
 import { AuthState } from "@/store/modules";
 import { RootState, StoreNames } from "@/store";
 import { ApiError } from "@/generated";
@@ -52,7 +52,7 @@ export const routes: RouteRecordRaw[] = [
                     }
                 });
 
-            if (currUser) {
+            if (currUser && store.getters[`${StoreNames.AUTH}/${AuthGetters.IS_LOGGED_IN}`]) {
                 next();
             }
             else next({ name: "signin"});

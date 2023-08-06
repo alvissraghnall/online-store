@@ -9,7 +9,7 @@
                 <div class="max-lg:ml-3 flex items-baseline">
                     <h3 class="text-lg md:text-xl lg:text-3xl capitalize font-semibold"> orders </h3>
                     <span class="text-xs font-semibold ml-1.5 text-neutral-500 inline">
-                        {{ numberOfOrders }} orders found
+                        {{ orders.length }} orders found
                     </span>
                 </div>
 
@@ -42,8 +42,14 @@ import { Order } from '@/generated';
 import { ref } from 'vue';
 import { OrdersContent } from "@/components/dashboard";
 import { ArrowLeftIcon } from "@heroicons/vue/24/solid";
+import { useStore } from "vuex";
+import { computed } from "vue";
+import { RootState, OrderStateItem, StoreNames, FavouriteGetters, OrderGetters } from '@/store';
 
-let numberOfOrders = 22;
+const store = useStore<RootState>();
+const orders = computed<OrderStateItem[]>(() => store.getters[`${StoreNames.ORDER}/${OrderGetters.ITEMS}`]);
+
+// let numberOfOrders = 22;
 
 const tabs = ["All Orders", ...Object.keys(Order.status)].map(el => el.toLowerCase().charAt(0) + el.toLowerCase().slice(1));
 let activeTab = ref(tabs[0]);
@@ -54,54 +60,54 @@ const handleRemoveSort = () => {
 
 const handleTabChange = (id: number): void => {
     activeTab.value = tabs[id];
-    if(id !== 0) ordersInView.value = orders.filter(
+    if(id !== 0) ordersInView.value = orders.value.filter(
     
         order => order.status === activeTab.value
     );
     else {
-        ordersInView.value = orders;
+        ordersInView.value = orders.value;
     }
     console.log(ordersInView.value);
     console.log(tabs, id, activeTab.value);
 }
 
-const orders: Order[] = [
-    {
-        products: [{ quantity: 1 }],
-        status: Order.status.COMPLETED,
-        createdAt: new Date(2023, 6, 4, 12, 44).toISOString(),
-        date: new Date(2023, 6, 4, 12, 44).toISOString(),
-        id: (Math.random() * 10000000).toFixed()
-    },
-    {
-        products: [{ quantity: 1 }],
-        status: Order.status.CANCELLED,
-        createdAt: new Date(2023, 1, 4, 12, 44).toISOString(),
-        date: new Date(2023, 1, 4, 12, 44).toISOString(),
-        id: (Math.random() * 10000000).toFixed()
-    },
-    {
-        products: [{ quantity: 1 }],
-        status: Order.status.PENDING,
-        createdAt: new Date(2023, 4, 4, 12, 44).toISOString(),
-        date: new Date(2023, 4, 4, 12, 44).toISOString(),
-        id: (Math.random() * 10000000).toFixed()
-    },
-    {
-        products: [{ quantity: 1 }],
-        status: Order.status.PROCESSING,
-        createdAt: new Date(2022, 6, 10, 12, 44).toISOString(),
-        date: new Date(2022, 6, 10, 12, 44).toISOString(),
-        id: (Math.random() * 10000000).toFixed()
-    },
-    {
-        products: [{ quantity: 1 }],
-        status: Order.status.COMPLETED,
-        createdAt: new Date(2020, 9, 4, 12, 44).toISOString(),
-        date: new Date(2020, 9, 4, 12, 44).toISOString(),
-        id: (Math.random() * 10000000).toFixed()
-    },
-];
+// const orders: Order[] = [
+//     {
+//         products: [{ quantity: 1 }],
+//         status: Order.status.COMPLETED,
+//         createdAt: new Date(2023, 6, 4, 12, 44).toISOString(),
+//         date: new Date(2023, 6, 4, 12, 44).toISOString(),
+//         id: (Math.random() * 10000000).toFixed()
+//     },
+//     {
+//         products: [{ quantity: 1 }],
+//         status: Order.status.CANCELLED,
+//         createdAt: new Date(2023, 1, 4, 12, 44).toISOString(),
+//         date: new Date(2023, 1, 4, 12, 44).toISOString(),
+//         id: (Math.random() * 10000000).toFixed()
+//     },
+//     {
+//         products: [{ quantity: 1 }],
+//         status: Order.status.PENDING,
+//         createdAt: new Date(2023, 4, 4, 12, 44).toISOString(),
+//         date: new Date(2023, 4, 4, 12, 44).toISOString(),
+//         id: (Math.random() * 10000000).toFixed()
+//     },
+//     {
+//         products: [{ quantity: 1 }],
+//         status: Order.status.PROCESSING,
+//         createdAt: new Date(2022, 6, 10, 12, 44).toISOString(),
+//         date: new Date(2022, 6, 10, 12, 44).toISOString(),
+//         id: (Math.random() * 10000000).toFixed()
+//     },
+//     {
+//         products: [{ quantity: 1 }],
+//         status: Order.status.COMPLETED,
+//         createdAt: new Date(2020, 9, 4, 12, 44).toISOString(),
+//         date: new Date(2020, 9, 4, 12, 44).toISOString(),
+//         id: (Math.random() * 10000000).toFixed()
+//     },
+// ];
 
-const ordersInView = ref(orders);
+const ordersInView = ref(orders.value);
 </script>

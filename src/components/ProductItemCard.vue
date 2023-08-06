@@ -39,7 +39,7 @@
                         <p class="text-lg font-semibold text-gray-900 mb-0">{{product.name.length < 29 ? product.name : product.name.slice(0, 29).concat("...")}}</p>
                         <p class="text-lg text-gray-900 mt-0 font-mono font-medium">${{product.price}}</p>
                     </router-link>
-                    <div class="flex flex-col-reverse mb-1 mr-4 group cursor-pointer">
+                    <div class="flex flex-col-reverse mb-1 mr-4 group cursor-pointer" @click="toggleFavourite">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:opacity-70" fill="none"
                             viewBox="0 0 24 24" stroke="gray" v-if="!liked">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -107,7 +107,7 @@ import { useStore } from 'vuex';
 import { Product } from '@/generated';
 import Toast from './Toast.vue';
 import { RootState, StoreNames } from '@/store';
-import { CartActions, CartStateItem } from '@/store/constants';
+import { CartActions, CartStateItem, FavouriteActions } from '@/store/constants';
 import { HeartIcon } from "@heroicons/vue/24/solid";
 
 let showToast = ref(false);
@@ -121,6 +121,12 @@ const props = defineProps<{
 }>();
 const store = useStore<RootState>();
 let timeout: number;
+
+
+const toggleFavourite = async () => {
+    const item = props.product;
+    await store.dispatch(`${StoreNames.FAVOURITE}/${FavouriteActions.TOGGLE_ITEM}`, item);
+}
 
 const addToCart = () => {
     const data: CartStateItem = { quantity: 1, product: props.product, productId: props.product.id }

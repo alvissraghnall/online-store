@@ -36,16 +36,18 @@ export let unavailableSubmitAction:Ref<boolean> = ref(true)
 export let timeouts:number[] = []
 export function handleSubmit(event:Event) {
 	event.preventDefault()
-	isLoading.value = true
+	isLoading.value = true;
+
+	// TODO: Implement save card functionality
 
 	timeouts.push(window.setTimeout(() => {
 		isLoading.value = false
 
-        ownerName.value = ''
-        cardNumber.value = ''
-        cvv.value = ''
-        expiration.value = ''
-        brand.value = 'default'
+        ownerName.value = '';
+        cardNumber.value = '';
+        cvv.value = '';
+        expiration.value = '';
+        brand.value = 'default';
 
   	toast.success('Card successfully saved :D');
 	}, 3000))

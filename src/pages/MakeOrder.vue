@@ -1,6 +1,7 @@
 <template>
-  <div class="bg-gray-100 pt-20">
+  <div class="bg-gray-100 pt-20 font-poppins">
     <h1 class="mb-10 text-center text-2xl font-bold">Items to Order</h1>
+    <p class="text-xs text-slate-500 text-center"> Select items from your cart you prefer to order now.</p>
     <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
       <div class="rounded-lg md:w-2/3">
         <div class="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start" v-for="item in items" :key="item.product.id">

@@ -20,7 +20,7 @@
 
             <div class="float-right rounded-2xl border border-solid border-slate-600 -my-1 space-x-2 p-1.5 flex items-center">
                 <img src="" alt="" class="rounded-full w-5 h-5" />
-                <span class="font-dm_sans font-medium text-sm">Alves Spandex</span>
+                <span class="font-dm_sans font-medium text-sm">{{ user.firstName + " " + user.lastName }}</span>
             </div>
         </nav>
     </header>
@@ -30,7 +30,24 @@
 import {OhVueIcon, addIcons} from "oh-vue-icons";
 import { IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp, HiMenuAlt4,  } from "oh-vue-icons/icons";
 import { ShoppingBagIcon } from "@heroicons/vue/24/outline"
-import { onMounted, ref } from "vue";
+import { ref, onMounted } from 'vue'
+import { ApiError, User, UserControllerService } from '@/generated';
+import { type RootState, StoreNames } from '@/store';
+import { AuthGetters, AuthActions } from '@/store/constants';
+import { toast } from 'vue3-toastify';
+import { useStore } from 'vuex';
+
+const store = useStore<RootState>();
+const user: User = store.getters[`${StoreNames.AUTH}/${AuthGetters.CURRENT_USER}`];
+
+const getUserDetails = async () => {
+    // let currUser: User;
+    try {
+        await store.dispatch(`${StoreNames.AUTH}/${AuthActions.GET_CURR_USER}`);
+    } catch (err) {
+        let error = err as Error;
+    }
+}
 
 addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp, HiMenuAlt4);
 
@@ -50,5 +67,7 @@ onMounted(() => {
         }
         prevScrollPos.value = currScrollPos;
     });
+
+    getUserDetails();
 })
 </script>

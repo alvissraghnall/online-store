@@ -155,7 +155,7 @@ export const auth: Module<AuthState, any> = {
         }
     },
     getters: {
-        [AuthGetters.IS_LOGGED_IN]: state => state.status.loggedIn,
+        [AuthGetters.IS_LOGGED_IN]: (state) => state.status.loggedIn,
         [AuthGetters.LOGIN_ERROR]: state => state.status.loginError,
         [AuthGetters.CURRENT_USER]: state => state.user
     }

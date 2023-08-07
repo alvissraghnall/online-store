@@ -3,12 +3,12 @@
         mini-head-text="Edit the information associated with your account."
         head-text="Your Personal Details"
     >
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-x-4 w-full">
             <div class="col-span-12 lg:col-span-7 space-y-3">
                 <!-- <h6 class="font-semibold text-base font-dm_sans">About You</h6> -->
                 <!-- <p class="text-slate-500 text-sm">This information is associated with your account.</p> -->
 
-                <form class="mt-5" @submit.prevent="handleSubmit">
+                <form class="mt-5 max-md:[&>label]:mx-4 w-full" @submit.prevent="handleSubmit">
                     <label class="flex flex-col gap-2 mb-4 mt-7">
                         <p class="text-sm text-neutral-500 uppercase">Address</p>
 
@@ -138,23 +138,28 @@
 import { onUnmounted, onMounted, reactive } from 'vue'
 import { timeouts } from '@util/card-brands'
 import { Form as PayCardForm, Card as PayCardCard, IntroHead } from "@/components";
-import { User } from '@/generated';
+import { ApiError, User, UserControllerService } from '@/generated';
 import { type RootState, StoreNames } from '@/store';
 import { AuthGetters, AuthActions } from '@/store/constants';
 import { toast } from 'vue3-toastify';
 import { useStore } from 'vuex';
-// import { ownerName, cardNumber, expiration, cvv } from '@util/card-brands';
 
 onUnmounted(() => {
     timeouts.forEach(clearTimeout)
 });
 
-// const cardDetails = reactive({
-//     ownerName, cardNumber, expiration, cvv
-// });
-
-const handleSubmit = (ev: Event) => {
+const handleSubmit = async (ev: Event) => {
     console.log(user);
+    try {
+        await UserControllerService.userControllerReplaceById(
+            user
+        );
+
+        // store.
+    } catch (err) {
+        let error = err as ApiError;
+        toast.error(error.body?.error.message);
+    }
 };
 
 const store = useStore<RootState>();

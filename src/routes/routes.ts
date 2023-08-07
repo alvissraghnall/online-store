@@ -7,6 +7,8 @@ import {
     Signin,
     Signup,
     NotFound,
+    Contact,
+    About,
     PaymentSuccess
 } from "../pages";
 import { type RouteRecordRaw } from "vue-router";
@@ -30,6 +32,22 @@ export const routes: RouteRecordRaw[] = [
         component: Products,
         meta: {
             transition: "slide-left"
+        }
+    },
+    {
+        path: "/about",
+        name: "about",
+        component: About,
+        meta: {
+            transition: "slide-left"
+        }
+    },
+    {
+        path: "/contact",
+        name: "contact",
+        component: Contact,
+        meta: {
+            transition: "slide-right"
         }
     },
     {
@@ -86,6 +104,7 @@ export const routes: RouteRecordRaw[] = [
         path: "/payment-success",
         name: "payment-success,",
         component: PaymentSuccess,
+        props: (route) => ({ reference: route.query.reference }),
         meta: {
             transition: "slide-up",
             requiresAuth: true

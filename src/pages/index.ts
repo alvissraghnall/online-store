@@ -7,5 +7,7 @@ export {default as Signin} from "./Signin.vue";
 export {default as Products} from "./Products.vue";
 export {default as NotFound} from "./NotFound.vue";
 export {default as Signup} from "./Signup.vue";
+export {default as Contact} from "./Contact.vue";
+export {default as About} from "./About.vue";
 export {default as Profile} from "./Profile.vue";
 export {default as PaymentSuccess} from "./PaymentSuccess.vue";

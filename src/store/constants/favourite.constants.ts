@@ -17,6 +17,6 @@ export enum FavouriteActions {
 
 export enum FavouriteGetters {
     ITEMS = 'items',
-    // TOTAL_QUANTITY = 'totalQuantity',
+    TOTAL_QUANTITY = 'totalQuantity',
     // TOTAL_AMOUNT = 'totalAmount',
 }

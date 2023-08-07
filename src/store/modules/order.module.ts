@@ -6,7 +6,7 @@ import { AuthActions, OrderActions, OrderGetters, OrderMutations, OrderStateItem
 import { RootState, StoreNames } from "..";
 import { toast } from "vue3-toastify";
 
-export const favourites: Module<Record<"items", OrderStateItem[]>, RootState> = {
+export const order: Module<Record<"items", OrderStateItem[]>, RootState> = {
     namespaced: true,
     state: {
         items: [],

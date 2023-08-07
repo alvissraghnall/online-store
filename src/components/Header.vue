@@ -20,10 +20,10 @@
           <router-link to="/about" class="block py-2 pl-3 pr-4 text-purple-500 rounded font-semibold hover:after:-translatex-full after:translate-x-0 after:h-1 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-purple-500">About</router-link>
         </li>
         <li>
-          <router-link to="/products" class="block py-2 pl-3 pr-4 text-purple-500 rounded font-semibold hover:after:-translatex-full after:translate-x-0 after:h-1 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-purple-500 no-underline">Services</router-link>
+          <router-link to="/products" class="block py-2 pl-3 pr-4 text-purple-500 rounded font-semibold hover:after:-translatex-full after:translate-x-0 after:h-1 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-purple-500 no-underline">Products</router-link>
         </li>
         <li>
-          <router-link to="/cart" class="block py-2 pl-3 pr-4 text-purple-500 rounded font-semibold hover:after:-translatex-full after:translate-x-0 after:h-1 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-purple-500 no-underline">Cart</router-link>
+          <router-link to="/user/orders" class="block py-2 pl-3 pr-4 text-purple-500 rounded font-semibold hover:after:-translatex-full after:translate-x-0 after:h-1 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-purple-500 no-underline">Orders</router-link>
         </li>
         <li>
           <router-link to="/contact" class="block py-2 pl-3 pr-4 text-purple-500 rounded font-semibold hover:after:-translatex-full after:translate-x-0 after:h-1 md:hover:bg-transparent md:border-0 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent transition-all duration-100 hover:text-purple-500 no-underline ">Contact Us</router-link>
@@ -39,7 +39,7 @@
             />
             <span class="absolute mx-0 top-1 right-1 max-md:right-3 w-4 h-4 z-10 font-semibold flex items-center justify-center rounded-full text-xs bg-purple-500 text-[#eee] mr-2.5 md:mr-0">
               <!-- badge -->
-              4
+              {{numberOfFavourites || 0}}
             </span>
         </span>
         <span class="relative cursor-pointer h-full w-full ml-1" @click="isCartOpen = true">
@@ -54,8 +54,10 @@
         </span>
         <span class="h-full w-full">
             <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-600">
+              <router-link to="/user">
                 <span class="sr-only">Open user menu</span>
-                <img class="w-8 h-8 rounded-full" src="../assets/user-icon.png" alt="user photo">
+                <img class="w-8 h-8 rounded-full" :src="'../assets/user-icon.png'" alt="user photo">
+              </router-link>
             </button>
         </span>
     </div>
@@ -65,7 +67,7 @@
 <FavouritesOverlay :open="isFavouritesOpen" @close="isFavouritesOpen = false" />
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .sticky-head {
   @apply w-full sticky top-0 left-0 leading-8 z-50 shadow-md shadow-[#ddd] bg-[#fff];
 }
@@ -80,7 +82,7 @@ import CartOverlay from "./CartOverlay.vue";
 import FavouritesOverlay from "./FavouritesOverlay.vue";
 import { ignoreBaseComps } from "../util/hide-base-helper";
 import { StoreNames } from "@/store/store-names.enum";
-import { CartActions, CartGetters } from "@/store/constants";
+import { CartActions, CartGetters, FavouriteActions, FavouriteGetters } from "@/store/constants";
 import { type RootState } from "@/store";
 // import { useRouter } from "vue-router";
 import { ShoppingBagIcon } from "@heroicons/vue/24/outline"
@@ -91,6 +93,7 @@ let isFavouritesOpen = ref(false);
 addIcons(IoBagHandleOutline, LaShoppingCartSolid, MdFavoriteborderSharp);
 
 const totalQuantity = computed(() => store.getters[`${StoreNames.CART}/${CartGetters.TOTAL_QUANTITY}`]);
+const numberOfFavourites = computed(() => store.getters[`${StoreNames.FAVOURITE}/${FavouriteGetters.TOTAL_QUANTITY}`]);
 
 let headerRef = ref<HTMLElement | null>(null);
 
@@ -109,11 +112,11 @@ const stickyHeader = () => {
     const currScrollPos = window.scrollY;
 
     if(prevScrollPos.value > currScrollPos) {
-      headerRef.value?.classList.remove("-top-[50px]");
+      headerRef.value?.classList.remove("-top-[3rem]");
       headerRef.value?.classList.add("sticky-head");
     } else {
       headerRef.value?.classList.remove("sticky-head");
-      headerRef.value?.classList.add("-top-[50px]");
+      headerRef.value?.classList.add("-top-[3rem]");
     }
     prevScrollPos.value = currScrollPos;
   });
@@ -123,6 +126,7 @@ const stickyHeader = () => {
 onMounted(() => {
   stickyHeader();
   store.dispatch(`${StoreNames.CART}/${CartActions.GET_CART}`);
+  store.dispatch(`${StoreNames.FAVOURITE}/${FavouriteActions.GET_FAVOURITES}`);
 });
 
 onUnmounted(() => {

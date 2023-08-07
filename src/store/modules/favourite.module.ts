@@ -91,5 +91,6 @@ export const favourites: Module<Record<"items", FavouriteStateItem[]>, RootState
     },
     getters: {
         [FavouriteGetters.ITEMS]: state => state.items,
+        [FavouriteGetters.TOTAL_QUANTITY]: state => state.items.length
     }
 }

@@ -131,7 +131,7 @@ const toggleFavourite = async () => {
 const addToCart = () => {
     const data: CartStateItem = { quantity: 1, product: props.product, productId: props.product.id }
     store.dispatch(`${StoreNames.CART}/${CartActions.ADD_ITEM}`, data);
-    console.log(store.getters["cart/totalQuantity"], store.getters["cart/totalAmount"]);
+    console.log(store.getters["favourites/totalQuantity"], store.getters["cart/totalAmount"]);
 }
 
 const transformCld = (lnk: string) => {

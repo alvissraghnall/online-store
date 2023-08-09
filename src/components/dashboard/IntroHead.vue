@@ -18,11 +18,11 @@
 </template>
 
 <script setup lang="ts">
+import { ArrowLeftIcon } from '@heroicons/vue/24/solid';
 
 const props = defineProps<{
     miniHeadText: string,
     headText?: string
 }>();
 
-import { ArrowLeftIcon } from '@heroicons/vue/24/solid';
 </script>

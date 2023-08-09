@@ -146,10 +146,10 @@ const sortOrders = (field: keyof typeof arrowDirections) => {
                 ? sortedOrders.value.sort((a, b)  => {
                     // return a.status === Order.status.CANCELLED ? -1 : a.status === Order.status.PENDING && b.status === Order.status.PROCESSING ? 1 : 0;
                     // return Order.status[a.status] > Order.status[b.status] ? 1 : -1;
-                    return statusOrderToBeSorted[a.status] - statusOrderToBeSorted[b.status];
+                    return statusOrderToBeSorted[a.status!] - statusOrderToBeSorted[b.status!];
                 })
                 : arrowDirections[field] === ArrowDirection.DOWN
-                ? sortedOrders.value.sort((a, b)  => statusOrderToBeSorted[a.status] - statusOrderToBeSorted[b.status]).reverse()
+                ? sortedOrders.value.sort((a, b)  => statusOrderToBeSorted[a.status!] - statusOrderToBeSorted[b.status!]).reverse()
                 : sortedOrders.value.sort(
                     (a, b) => { console.log(props.orders.map(s => s.status)); return props.orders.indexOf(a) - props.orders.indexOf(b)}
                 );

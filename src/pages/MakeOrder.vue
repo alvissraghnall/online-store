@@ -123,7 +123,7 @@ const checkout = async () => {
       ) + 15.99)
     });
 
-    router.push(response.data.authorization_url);
+    window.location.href = response.data.authorization_url;
     
   } catch (err) {
     let error = err as ApiError;

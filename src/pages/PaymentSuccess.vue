@@ -1,6 +1,6 @@
 <template>
   <transition-root :show="true">
-    <dialog as="div" class="fixed inset-0 z-10 overflow-y-auto" @close="$emit('close')">
+    <Dialog as="div" class="fixed inset-0 z-10 overflow-y-auto" @close="$emit('close')">
       <div class="flex items-center justify-center min-h-screen p-4">
         <transition-child
           as="div"
@@ -31,7 +31,7 @@
                 Please proceed to /user/orders to track your order.
             </p>
             <button
-              @click="onClose"
+              @click="$emit('close')"
               class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
             >
               Close
@@ -39,7 +39,7 @@
           </div>
         </transition-child>
       </div>
-    </dialog>
+    </Dialog>
   </transition-root>
 </template>
 

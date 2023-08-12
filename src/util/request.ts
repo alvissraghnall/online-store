@@ -1,4 +1,3 @@
-
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
@@ -18,9 +17,10 @@ import type { ApiRequestOptions } from './ApiRequestOptions';
 import type { ApiResult } from './ApiResult';
 import { CancelablePromise } from './CancelablePromise';
 import type { OnCancel } from './CancelablePromise';
-import type { OpenAPIConfig } from './OpenAPI';
+import { OpenAPI, type OpenAPIConfig } from './OpenAPI';
 
 export const AUTH_REQ = () => {
+    OpenAPI.BASE = (import.meta as any).env.PROD ? (import.meta as any).env.VITE_DEPLOYED_API_URL! : 'http://localhost:4000';
     const defaultOptions = {
         method: 'get',
         headers: {

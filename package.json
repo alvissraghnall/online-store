@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vue-tsc && vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cpreq": "cp src/util/request.ts src/generated/core",
+    "genservice": "npx openapi-typescript-codegen -i openapi/openapi.json -o src/generated -c axios",
+    "prebuild": "yarn genservice && yarn cpreq"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.14",

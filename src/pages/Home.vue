@@ -67,7 +67,7 @@
                     slidesPerView: 3,
                     spaceBetween: 3
                 },
-                1160: {
+                1560: {
                     slidesPerView: 4,
                     spaceBetween: 5
                 }

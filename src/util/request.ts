@@ -20,7 +20,9 @@ import type { OnCancel } from './CancelablePromise';
 import { OpenAPI, type OpenAPIConfig } from './OpenAPI';
 
 export const AUTH_REQ = () => {
+    console.log((import.meta as any).env.PROD, (import.meta as any).env.VITE_DEPLOYED_API_URL);
     OpenAPI.BASE = (import.meta as any).env.PROD ? (import.meta as any).env.VITE_DEPLOYED_API_URL! : 'http://localhost:4000';
+    console.log(OpenAPI.BASE);
     const defaultOptions = {
         method: 'get',
         headers: {

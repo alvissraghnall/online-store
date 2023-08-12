@@ -184,6 +184,7 @@ const countDownDate = {
     month: 6,
     day: 25
 }
+console.log((import.meta as any).env.PROD, (import.meta as any).env.VITE_DEPLOYED_API_URL);
 
 const products = ref<Product[] | null>(null);
 const swiperProducts = ref<Product[] | null>(null);

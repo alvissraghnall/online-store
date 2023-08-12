@@ -56,7 +56,7 @@
             <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-600">
               <router-link to="/user">
                 <span class="sr-only">Open user menu</span>
-                <img class="w-8 h-8 rounded-full" :src="'../assets/user-icon.png'" alt="user photo">
+                <img class="w-8 h-8 rounded-full" :src="'https://api.dicebear.com/5.0/avataaars/svg?seed='+ randomVal" alt="user photo">
               </router-link>
             </button>
         </span>
@@ -132,5 +132,7 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener("scroll", stickyHeader);
 });
+
+const randomVal = Math.random() * 100000;
 
 </script>
